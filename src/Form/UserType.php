@@ -59,8 +59,8 @@ class UserType extends AbstractType
             ->add('birthdate',
             BirthdayType::class,
             array(
-                    'label' => 'Date de naissance',
-                    'format' => 'dd-MM-yyyy'
+                'label' => 'Date de naissance',
+                'format' => 'dd-MM-yyyy'
             )        
             )
             ->add('email',
@@ -75,7 +75,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // 'data_class' => User::class,
+            //'data_class' => User::class,
         ]);
     }
 }
