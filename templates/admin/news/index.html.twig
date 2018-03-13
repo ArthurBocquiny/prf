@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    
+    <h3><a href="{{ path('app_admin_news_insert') }}">Ajouter un article</a></h3>
+
+<table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Contenu</th>
+            <th>Date</th>
+            <th width="200px"></th>
+        </tr>
+        {% for new in news %}
+        <tr>
+            <td>{{ new.id }}</td>
+            <td>{{ new.titre }}</td>
+            <td>{{ new.contenu }}</td>
+            <td>{{ new.date|date("d/m/Y") }}</td>
+            <td>
+                <a href="{{ path('app_admin_news_delete', {id: new.id}) }}" class="btn btn-danger">
+                    Supprimer
+                </a>
+                <a href="{{ path('app_admin_news_insert', {id: new.id}) }}" class="btn btn-primary">
+                    Modifier
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock %}

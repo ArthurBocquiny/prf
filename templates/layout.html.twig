@@ -19,7 +19,7 @@
     <nav class="navbar navbar-inverse">
         <ul class="nav navbar-nav">
             <li><a href="#">Jeux</a></li>
-            <li><a href="#">News</a></li>
+            <li><a href="{{ path('app_admin_news_index') }}">News</a></li>
             <li><a href="#">Clan</a></li>
             <li><a href="{{ path('app_security_register') }}">Inscription</a></li>
             <li><a href="{{ path('app_profil_index') }}">Profil</a></li>
@@ -27,6 +27,16 @@
     </nav>
    
     <div class="container">
+        {% for type, messages in app.session.flashbag.all %}
+           {% for message in messages %}
+               {% if type == 'error' %}
+                   {% set type = 'danger' %}
+               {% endif %}
+                   <div class="alert alert-{{ type }}">
+                       {{ message|raw }}
+                   </div>
+           {% endfor %}
+       {% endfor %}
     {% block content %}{% endblock %}
     </div>
     

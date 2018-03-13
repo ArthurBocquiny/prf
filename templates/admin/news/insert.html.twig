@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <h1>Insérer un article</h1>
+    
+    {{ form_start(form) }}
+        {{ form_row(form.titre) }}
+        {{ form_row(form.contenu) }}
+        <button type="submit">Publier</button>
+    {{ form_end(form) }}
+    
+{% endblock %}
