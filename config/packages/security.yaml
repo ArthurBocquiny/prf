@@ -25,7 +25,7 @@ security:
                 login_path: app_security_login
                 # route du traitement du formulaire d'authentification
                 check_path: app_security_login
-                # vers quek page on est redirigé apres l'authentification
+                # vers quelle page on est redirigé apres l'authentification
                 default_target_path: app_index_index
             logout:
                 # route de la page de deconnexion
