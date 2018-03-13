@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <h1>Organiser un tournois</h1>
+    
+    {{ form_start(form) }}
+        {{ form_row(form.jeu) }}
+        {{ form_row(form.date) }}
+        {{ form_row(form.nb_participant_max) }}
+        <button type="submit">Organiser !</button>
+    {{ form_end(form) }}
+    
+{% endblock %}

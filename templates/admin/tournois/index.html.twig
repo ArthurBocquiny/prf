@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    
+    <h3><a href="{{ path('app_admin_tournois_insert') }}">Organiser un tournois</a></h3>
+
+<table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Jeu</th>
+            <th>Date</th>
+            <th>Nb participant Max</th>
+            <th width="200px"></th>
+        </tr>
+        {% for tournoi in tournois %}
+        <tr>
+            <td>{{ tournoi.id }}</td>
+            <td>{{ tournoi.jeu }}</td>
+            <td>{{ tournoi.date|date("d/m/Y h:m:s") }}</td>
+            <td>{{ tournoi.nbParticipantMax }}</td>
+            <td>
+                <a href="{{ path('app_admin_tournois_delete', {id: tournoi.id}) }}" class="btn btn-danger">
+                    Supprimer
+                </a>
+                <a href="{{ path('app_admin_tournois_insert', {id: tournoi.id}) }}" class="btn btn-primary">
+                    Modifier
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock %}
