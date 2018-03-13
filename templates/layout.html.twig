@@ -17,6 +17,7 @@
 {% block body %}
    
     <nav class="navbar navbar-inverse">
+        <div class="container">
         <ul class="nav navbar-nav">
             <li><a href="#">Jeux</a></li>
             <li><a href="#">News</a></li>
@@ -24,9 +25,44 @@
             <li><a href="{{ path('app_security_register') }}">Inscription</a></li>
             <li><a href="{{ path('app_profil_index') }}">Profil</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+                {% if app.user is null %}
+                    <li>
+                        <a href="{{ path('app_security_register') }}">
+                            Inscription
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_security_login') }}">
+                            Connexion
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a>{{ app.user.pseudo }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_security_logout') }}">
+                            Déconnexion
+                        </a>
+                    </li>
+                {% endif%}
+            </ul>
+        </div>
     </nav>
    
     <div class="container">
+        {% for type, messages in app.session.flashbag.all %}
+            {% for  message in messages %}
+                {# pour la classe alert-danger de bootstrap #}
+                {% if type == 'error' %}
+                    {% set type = 'danger' %}
+                {% endif %}
+                <div class="alert alert-{{ type }}">
+                    {{ message|raw }}
+                </div>
+            {% endfor %}
+        {% endfor %}
     {% block content %}{% endblock %}
     </div>
     
