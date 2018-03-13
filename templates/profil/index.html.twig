@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>{{ profil.pseudo }}</h1>
-    <p>Prénom, Nom : {{ profil.firstname }} {{ profil.lastname }}</p>
-    <p>Email : {{ profil.email }}</p>
-    <p>Pays : {{ profil.country }}</p>
-    <p>Date de naissance : {{ profil.birthdate }}</p>
+    <h1>{{ app.user.pseudo }}</h1>
+    <p>Prénom, Nom : {{ app.user.firstname }} {{ app.user.lastname }}</p>
+    <p>Email : {{ app.user.email }}</p>
+    <p>Pays : {{ app.user.country }}</p>
+    <p>Date de naissance : {{ app.user.birthdate | date('d/m/Y') }}</p>
 {% endblock %}

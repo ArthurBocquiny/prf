@@ -11,13 +11,23 @@ class ProfilController extends Controller
     /**
      * @Route("/profil")
      */
-    public function index(User $profil)
+    public function index()
     {
-        return $this->render(
-                'profil/index.html.twig',
-                [
-                    'profil' => $profil
-                ]
-        );
+        $user = $this->getUser();
+        
+        if ( null === $user )
+        {
+            $this->addFlash('error', 'Veuillez vous connecter');
+            
+            return $this->redirectToRoute('app_security_login');
+            
+        } else {
+            return $this->render(
+                    'profil/index.html.twig',
+                    [
+                        'user' => $user
+                    ]
+            );
+        }
     }
 }
