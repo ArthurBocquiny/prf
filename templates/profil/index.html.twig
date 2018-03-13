@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>{{ profil.pseudo }}</h1>
+    <p>Prénom, Nom : {{ profil.firstname }} {{ profil.lastname }}</p>
+    <p>Email : {{ profil.email }}</p>
+    <p>Pays : {{ profil.country }}</p>
+    <p>Date de naissance : {{ profil.birthdate }}</p>
+{% endblock %}
