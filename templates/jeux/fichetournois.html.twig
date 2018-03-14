@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+
+    <h1>{{ selectedtournois.jeu }}</h1>
+    <h2>{{ selectedtournois.categorie }}</h2>
+    <h3>Le {{ selectedtournois.date|date('d/m/y à h:i') }}</h3>
+        <p>{{ selectedtournois.description }}</p>
+        <button href='#'
+                class="btn btn-primary">
+            S'inscrire
+        </button>
+{% endblock %}
+

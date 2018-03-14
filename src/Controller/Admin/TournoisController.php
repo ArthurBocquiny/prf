@@ -85,6 +85,6 @@ class TournoisController extends Controller
         return $this->redirectToRoute('app_admin_tournois_index');
         
     }
-   
+    
     
 }
