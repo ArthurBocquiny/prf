@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    
+    <h3><a href="{{ path('app_admin_users_edit') }}">Ajouter un membre</a></h3>
+
+<table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Pseudo</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Pays</th>
+            <th>Date de naissance</th>
+            <th width="200px"></th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.pseudo }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.country }}</td>
+            <td>{{ user.birthdate|date("d/m/Y") }}</td>
+            <td>
+                <a href="{{ path('app_admin_users_delete', {id: user.id}) }}" class="btn btn-danger">
+                    Supprimer
+                </a>
+                <a href="{{ path('app_admin_users_edit', {id: user.id}) }}" class="btn btn-primary">
+                    Modifier
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock %}
+
