@@ -18,13 +18,15 @@
    
     <nav class="navbar navbar-inverse">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Jeux</a></li>
-                <li><a href="{{ path('app_admin_news_index') }}">News</a></li>
-                <li><a href="#">Clan</a></li>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Jeux</a></li>
+            <li><a href="{{ path('app_admin_news_index') }}">News</a></li>
+            <li><a href="{{ path('app_admin_users_index') }}">Users</a></li>
+            <li><a href="#">Clan</a></li>
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
                 {% if app.user is null %}
                     <li>
                         <a href="{{ path('app_security_register') }}">

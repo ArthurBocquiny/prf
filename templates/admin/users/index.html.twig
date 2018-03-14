@@ -2,23 +2,24 @@
 
 {% block content %}
     
-    <h3><a href="{{ path('app_admin_users_edit') }}">Ajouter un membre</a></h3>
+    <h3>Liste des membres</h3>
 
 <table class="table">
         <tr>
             <th>Id</th>
-            <th>Prenom</th>
+            <th>Prénom</th>
             <th>Nom</th>
             <th>Pseudo</th>
             <th>Email</th>
             <th>Rôle</th>
             <th>Pays</th>
             <th>Date de naissance</th>
-            <th width="200px"></th>
+            <th width="250px"></th>
         </tr>
         {% for user in users %}
         <tr>
             <td>{{ user.id }}</td>
+            <td>{{ user.firstname }}</td>
             <td>{{ user.lastname }}</td>
             <td>{{ user.pseudo }}</td>
             <td>{{ user.email }}</td>
@@ -26,16 +27,18 @@
             <td>{{ user.country }}</td>
             <td>{{ user.birthdate|date("d/m/Y") }}</td>
             <td>
+                {% if user.role == 'ROLE_USER' %}
+                    <a href="{{ path('app_admin_users_upgrade', {id: user.id}) }}" class="btn btn-primary">
+                        Promouvoir
+                    </a>
+                {% endif %}
                 <a href="{{ path('app_admin_users_delete', {id: user.id}) }}" class="btn btn-danger">
                     Supprimer
                 </a>
-                <a href="{{ path('app_admin_users_edit', {id: user.id}) }}" class="btn btn-primary">
-                    Modifier
-                </a>
+                
             </td>
         </tr>
         {% endfor %}
     </table>
     
 {% endblock %}
-
