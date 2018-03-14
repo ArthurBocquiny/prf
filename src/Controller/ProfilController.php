@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Intl\Intl;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ProfilController extends Controller
 {
@@ -14,7 +14,16 @@ class ProfilController extends Controller
     public function index()
     {
         $user = $this->getUser();
-        
+        $userCountry = $this->getUser()->getCountry();
+        $country = Intl::getRegionBundle()->getCountryNames();
+        foreach($country as $key => $value)
+        {
+            if ($userCountry == $key)
+            {
+                $userCountry = $value;
+            }
+        }
+             
         if ( null === $user )
         {
             $this->addFlash('error', 'Veuillez vous connecter');
@@ -25,7 +34,8 @@ class ProfilController extends Controller
             return $this->render(
                     'profil/index.html.twig',
                     [
-                        'user' => $user
+                        'user' => $user,
+                        'user_country' => $userCountry
                     ]
             );
         }
