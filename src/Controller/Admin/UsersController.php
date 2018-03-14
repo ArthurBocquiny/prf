@@ -42,7 +42,6 @@ class UsersController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $users = $em->find(User::class, $id);
-        dump($users);
         $users->setRole('ROLE_ADMIN');
         
         $em->persist($users);
