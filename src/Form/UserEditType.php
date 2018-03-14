@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class UserEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -36,21 +36,7 @@ class UserType extends AbstractType
                 'label' => 'Pseudo'
             ]
             )
-            ->add(
-                'plainPassword',
-                // 2 champs qui doivent etre identiques
-                RepeatedType::class,
-                [
-                    // ... de type password
-                    'type' => PasswordType::class,
-                    'first_options' => [
-                        'label' => 'Mot de passe'
-                    ],
-                    'second_options' => [
-                        'label' => 'Confirmation du mot de passe'
-                    ]
-                ]
-            )
+            
             ->add('country',
             CountryType::class,
             [
