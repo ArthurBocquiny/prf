@@ -2,31 +2,30 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\News;
-use App\Form\NewsType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Tournois;
+use App\Form\TournoisType;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
-* @Route("/news")
+* @Route("/tournois")
 */
-class NewsController extends Controller
+class TournoisController extends Controller
 {
     /**
      * @Route("/")
      */
     public function index()
     {
-        $repository = $this->getDoctrine()->getRepository(News::class);
-        $news = $repository->findAll();
-    
+        $repository = $this->getDoctrine()->getRepository(Tournois::class);
+        $tournois = $repository->findAll();
+        
         return $this->render(
-                '/admin/news/index.html.twig',
-                [
-                    'news' => $news
-                ]
-        );
+                'admin/tournois/index.html.twig',
+            [
+                'tournois' => $tournois
+            ]);
     }
     
     /**
@@ -37,14 +36,13 @@ class NewsController extends Controller
        $em = $this->getDoctrine()->getManager();
        
        if (is_null($id)) {
-       $news = new News();
-       $news->setDate(new \DateTime('now'));
+       $tournois = new Tournois();
        }
        else {
-           $news = $em->find(News::class, $id);
+           $tournois = $em->find(Tournois::class, $id);
        }
        
-       $form = $this->createForm(NewsType::class, $news);
+       $form = $this->createForm(TournoisType::class, $tournois);
        
        $form->handleRequest($request);
        
@@ -52,11 +50,11 @@ class NewsController extends Controller
            if ($form->isValid()){
                
                $em = $this->getDoctrine()->getManager();
-               $em->persist($news);
+               $em->persist($tournois);
                $em->flush();
                
-               $this->addFlash('success', 'Article ajouté');
-               return $this->redirectToRoute('app_admin_news_index');
+               $this->addFlash('success', 'Tournois Organisé !');
+               return $this->redirectToRoute('app_admin_tournois_index');
                
            } else {
                
@@ -64,7 +62,7 @@ class NewsController extends Controller
            }
        }
        
-       return $this->render('admin/news/insert.html.twig',
+       return $this->render('admin/tournois/insert.html.twig',
                 [
                     'form' => $form->createView()
                 ]);
@@ -78,15 +76,15 @@ class NewsController extends Controller
     public function delete($id){
         
         $em = $this->getDoctrine()->getManager();
-        $news = $em->find(News::class, $id);
+        $tournois = $em->find(Tournois::class, $id);
         
-        $em->remove($news);
+        $em->remove($tournois);
         $em->flush();
         
-        $this->addFlash('success', 'L\'article à été supprimé');
-        return $this->redirectToRoute('app_admin_news_index');
+        $this->addFlash('success', 'Le tournois à été annulé');
+        return $this->redirectToRoute('app_admin_tournois_index');
         
     }
-   
-   
+    
+    
 }

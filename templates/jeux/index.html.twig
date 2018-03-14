@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Tournois à venir</h1>
+    
+    <div class="list-group">
+        {% for tournoi in tournois %}
+            
+            <a href="{{ path('app_jeux_fichetournois', {id: tournoi.id}) }}">
+                <h2 class="list-group-item-heading">{{ tournoi.jeu }}</h2>
+            </a>
+            
+            <p class="list-group-item-text">
+                {{ tournoi.categorie }} |
+                le {{ tournoi.date|date('d/m/y à h:i') }}
+            </p>
+            <br>
+            
+        {% endfor %}
+    </div>
+{% endblock %}
