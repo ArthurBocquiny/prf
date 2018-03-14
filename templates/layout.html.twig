@@ -22,8 +22,7 @@
             <li><a href="#">Jeux</a></li>
             <li><a href="{{ path('app_admin_news_index') }}">News</a></li>
             <li><a href="#">Clan</a></li>
-            <li><a href="{{ path('app_security_register') }}">Inscription</a></li>
-            <li><a href="{{ path('app_profil_index') }}">Profil</a></li>
+            
         </ul>
         <ul class="nav navbar-nav navbar-right">
                 {% if app.user is null %}
@@ -39,7 +38,7 @@
                     </li>
                 {% else %}
                     <li>
-                        <a>{{ app.user.pseudo }}</a>
+                        <a  href="{{ path('app_profil_index') }}"> {{ app.user.pseudo }} </a>
                     </li>
                     <li>
                         <a href="{{ path('app_security_logout') }}">
