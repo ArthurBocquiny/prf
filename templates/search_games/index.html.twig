@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <form action="" method="GET">
+        
+        <label for="games">Recherche de jeux :</label>
+        <input type="text" name="games">
+        
+        <input type="submit" value="Rechercher">
+    </form>
+    {% for info in infos %}
+        <a href="{{ path('app_admin_tournois_insert') }}?game_name={{ info.name }}">
+            {% if info.cover is defined %}
+                <img src="{{ info.cover.url }}">
+            {% endif %}
+        </a>
+        <h1>{{ info.name }}</h1>
+    {% endfor %}
+{% endblock %}

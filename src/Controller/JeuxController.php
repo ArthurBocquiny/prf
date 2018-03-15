@@ -25,7 +25,7 @@ class JeuxController extends Controller
         return $this->render(
             'jeux/index.html.twig',
             [
-            'tournois' => $tournois,
+                'tournois' => $tournois,
             ]);
     }
     

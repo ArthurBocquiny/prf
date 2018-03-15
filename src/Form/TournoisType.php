@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Tournois;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -19,9 +20,9 @@ class TournoisType extends AbstractType
         $builder
                 
             ->add('jeu',
-            TextType::class,
+            HiddenType::class,
                     [
-                'label' => 'Jeu'
+                        'data'  => $_GET['game_name']
                     ])
                 
             ->add('categorie',

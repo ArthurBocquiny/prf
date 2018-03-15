@@ -40,8 +40,19 @@ class TournoisController extends Controller
        }
        else {
            $tournois = $em->find(Tournois::class, $id);
+           
        }
-       
+       if(!empty($_GET['game_name']))
+        {
+           $jeu = $_GET['game_name'];
+       } else {
+           $jeu = 'null';
+       }
+       foreach ($tournois as $key => $value) {
+                if($key == 'jeu'){
+                    $jeu = $value;
+                }
+            }
        $form = $this->createForm(TournoisType::class, $tournois);
        
        $form->handleRequest($request);
@@ -64,7 +75,8 @@ class TournoisController extends Controller
        
        return $this->render('admin/tournois/insert.html.twig',
                 [
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
+                    'jeu' => $jeu
                 ]);
         
    }

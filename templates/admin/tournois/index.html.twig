@@ -2,7 +2,7 @@
 
 {% block content %}
     
-    <h3><a href="{{ path('app_admin_tournois_insert') }}">Organiser un tournois</a></h3>
+    <h3><a href="{{ path('app_searchgames_index') }}">Organiser un tournois</a></h3>
 
 <table class="table">
         <tr>
@@ -22,7 +22,7 @@
                 <a href="{{ path('app_admin_tournois_delete', {id: tournoi.id}) }}" class="btn btn-danger">
                     Supprimer
                 </a>
-                <a href="{{ path('app_admin_tournois_insert', {id: tournoi.id}) }}" class="btn btn-primary">
+                <a href="{{ path('app_admin_tournois_insert', {id: tournoi.id}) }}?game_name={{ tournoi.jeu }}" class="btn btn-primary">
                     Modifier
                 </a>
             </td>

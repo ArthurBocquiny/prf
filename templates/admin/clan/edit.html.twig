@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Edition articles</h1>
+    <h1>Ajout de clan</h1>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.description) }}
@@ -17,7 +17,7 @@
     {% endif%}
     <div class="form-btn-group pull-right">
         <button type="submit" class="btn btn-primary">
-            Enregistrer
+            Ajouter
         </button>
         <a href="{{ path('app_admin_clan_index') }}" class="btn btn-default">
             Retour
