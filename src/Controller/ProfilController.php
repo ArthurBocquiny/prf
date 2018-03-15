@@ -14,6 +14,7 @@ class ProfilController extends Controller
     public function index()
     {
         $user = $this->getUser();
+        dump($user);
         $userCountry = $this->getUser()->getCountry();
         $country = Intl::getRegionBundle()->getCountryNames();
         foreach($country as $key => $value)
