@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Symfony\Component\Intl\Intl;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
@@ -17,6 +18,8 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $countries = Intl::getRegionBundle()->getCountryNames();
+        
         $builder
             ->add('lastname',
             TextType::class,
@@ -55,8 +58,8 @@ class UserType extends AbstractType
             CountryType::class,
             [
                 'label' => 'Pays'
-            ] 
-            )
+            ]
+                    )
             ->add('birthdate',
             BirthdayType::class,
             array(
