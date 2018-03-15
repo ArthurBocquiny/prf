@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\InscriptionTournois;
 use App\Entity\Tournois;
-use App\Repository\TournoisRepository;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Form\InscriptionTournoisType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
 * @Route("/jeux")
@@ -30,15 +32,40 @@ class JeuxController extends Controller
     /**
      * @Route("/fichetournois/{id}", defaults={"id" :null})
      */
-    public function fichetournois($id)
+    public function fichetournois( Request $request, $id)
     {
+        
         $em = $this->getDoctrine()->getManager();
         $selectedtournois = $em->find(Tournois::class, $id);
+        
+        $tournois = new InscriptionTournois();
+        $form = $this->createForm(InscriptionTournoisType::class, $tournois);
+        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()){
+            if($form->isValid()){
+                
+                $em->persist($tournois);
+                $em->flush();
+               
+                $this->addFlash('success', 'Vous êtes inscrit !');
+               
+               return $this->redirectToRoute('app_jeux_index');
+           }
+           else{
+                $this->addFlash('error', 'Le formulaire contient des erreurs');
+                
+            }
+        }
         
          return $this->render(
             'jeux/fichetournois.html.twig',
             [
-                'selectedtournois' => $selectedtournois
+                'selectedtournois' => $selectedtournois,
+                'form' => $form->createView()
             ]);
     }
+    
+   
 }
