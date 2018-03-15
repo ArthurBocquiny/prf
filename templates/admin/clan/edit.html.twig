@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Edition articles</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.creation) }}
+    {#{ form_row(form.teams) }#}
+    {{ form_row(form.logo) }}
+    {# form.vars.value = l'entité liée au formulaire(l'entité Article) #}
+    {% if form.vars.value.logo is not null %}
+        <p>
+            Actuellement : 
+            <img src="{{ asset('upload/' ~ form.vars.value.logo.filename) }}" width="200px">
+        </p>
+    {% endif%}
+    <div class="form-btn-group pull-right">
+        <button type="submit" class="btn btn-primary">
+            Enregistrer
+        </button>
+        <a href="{{ path('app_admin_clan_index') }}" class="btn btn-default">
+            Retour
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

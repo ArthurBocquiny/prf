@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <h1>Gestion Clans</h1>
+    <h3><a href="{{ path('app_admin_clan_edit') }}">Ajouter un Clan</a></h3>
+
+<table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Création</th>
+            <th>Logo</th>
+            <th width="200px"></th>
+        </tr>
+        {% for value in clan %}
+        <tr>
+            <td>{{ value.id }}</td>
+            <td>{{ value.name }}</td>
+            <td>{% if value.logo is not null %}
+                    <img src="{{ asset('upload/' ~ value.logo) }}" width="200px">
+                {% endif %}</td>
+            <td>{{ value.creation|date("d/m/Y") }}</td>
+            <td>
+                <a href="{{ path('app_admin_clan_delete', {id: value.id}) }}" class="btn btn-danger">
+                    Supprimer
+                </a>
+                <a href="{{ path('app_admin_clan_edit', {id: value.id}) }}" class="btn btn-primary">
+                    Modifier
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
