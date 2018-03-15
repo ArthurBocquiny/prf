@@ -7,9 +7,26 @@
     <h2>{{ selectedtournois.categorie }}</h2>
     <h3>Le {{ selectedtournois.date|date('d/m/y à h:i') }}</h3>
         <p>{{ selectedtournois.description }}</p>
-        <button href='#'
-                class="btn btn-primary">
-            S'inscrire
-        </button>
+        
+        {% if app.user %}
+            
+        {{ form_start(form) }}
+            {{ form_row(form.id_user,{'value' : app.user.id}) }}
+            {{ form_row(form.id_tournois,{'value' : selectedtournois.id}) }}
+        {{ form_end(form) }}
+        
+            <button type="submit"
+                    class="btn btn-primary">
+                S'inscrire
+            </button>
+        
+        {% else  %}
+            <a href="{{ path('app_security_login') }}"
+                    class="btn btn-primary">
+                Se connecter pour s'inscrire
+            </a>
+        {% endif %}
+        
+        
 {% endblock %}
 

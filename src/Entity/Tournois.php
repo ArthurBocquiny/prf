@@ -39,9 +39,9 @@ class Tournois
     private $description;
     
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
-     * @var \Datetime
+     * @var \DateTime
      */
     private $date;
     
