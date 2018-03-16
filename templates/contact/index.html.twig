@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Nous contacter</h1>
+    
+    {% if app.user is null%}
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.email)}}
+        {{ form_row(form.object) }}
+        {{ form_row(form.message) }}
+        <div class="form-btn-group pull-right">
+               <button type="submit" class="btn btn-primary">
+                   Envoi
+               </button>
+           </div>
+        {{ form_end(form) }}
+    {% else %}
+        {{ form_start(form) }}
+        <div>
+            {{ form_row(form.name) }}
+        </div>
+        <div>
+            {{ form_row(form.email) }}
+        </div>
+        {{ form_row(form.object) }}
+        {{ form_row(form.message) }}
+            <div class="form-btn-group pull-right">
+               <button type="submit" class="btn btn-primary">
+                   Envoi
+               </button>
+           </div>
+       {{ form_end(form) }}
+    {% endif %}
+{% endblock %}
