@@ -38,8 +38,19 @@ class JeuxController extends Controller
         $em = $this->getDoctrine()->getManager();
         $selectedtournois = $em->find(Tournois::class, $id);
         
+        // Nombre de participants
+        $userTournois = new Tournois();
+        $userTournois = $this->getDoctrine()->getRepository(InscriptionTournois::class);
+        $nbuser = count($userTournois->selectUserTournois($id));
+        // --------------
+        
         $tournois = new InscriptionTournois();
         $form = $this->createForm(InscriptionTournoisType::class, $tournois);
+        
+        $actuser = $this->getUser();
+        $repository = $this->getDoctrine()->getRepository(InscriptionTournois::class);
+        $insctournois = count($repository->grossePute($id, $actuser));
+        dump($insctournois);
         
         $form->handleRequest($request);
         
@@ -63,7 +74,9 @@ class JeuxController extends Controller
             'jeux/fichetournois.html.twig',
             [
                 'selectedtournois' => $selectedtournois,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'nbuser' => $nbuser,
+                'insctournois' => $insctournois
             ]);
     }
     

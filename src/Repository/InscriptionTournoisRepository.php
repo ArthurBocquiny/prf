@@ -16,9 +16,37 @@ class InscriptionTournoisRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Inscription::class);
+        parent::__construct($registry, InscriptionTournois::class);
     }
+    
+     
+    public function selectUserTournois($id)
+    {
+        $qb = $this->createQueryBuilder('i');
+        
+        $qb
+            ->andWhere('i.id_tournois = :id_tournois')
+            ->setParameter('id_tournois', $id);
+            
+            
+            
+            return $qb->getQuery()->getResult();
+   
+    }
+     
+    public function grossePute($id, $actuser)
+    {
+        $qb = $this->createQueryBuilder('i');
+        
+        $qb
+            ->andWhere('i.id_tournois = :id_tournois')
+            ->andWhere('i.id_user = :id_user')
+            ->setParameter('id_tournois', $id)
+            ->setParameter('id_user', $actuser);
 
+            return $qb->getQuery()->getResult();
+       
+    }
     /*
     public function findBySomething($value)
     {

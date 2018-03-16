@@ -52,6 +52,13 @@ class Tournois
      */
     private $nb_participant_max;
     
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $nb_participant_actuel;
+
+    
     function getId() {
         return $this->id;
     }
@@ -75,7 +82,7 @@ class Tournois
     function getDescription() {
         return $this->description;
     }
-
+    
     function setJeu($jeu) {
         $this->jeu = $jeu;
     }
@@ -95,5 +102,14 @@ class Tournois
     function setDescription($description) {
         $this->description = $description;
     }
-    
+
+    function getNbParticipantActuel() {
+        return $this->nb_participant_actuel;
+    }
+
+    function setNbParticipantActuel($nb_participant_actuel) {
+        $this->nb_participant_actuel = $nb_participant_actuel;
+    }
+
+
 }

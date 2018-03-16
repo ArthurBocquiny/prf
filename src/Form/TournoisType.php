@@ -53,6 +53,12 @@ class TournoisType extends AbstractType
                     [
                 'label' => 'Nombre de participant maximum'
                     ])
+                
+            ->add('nb_participant_actuel',
+            HiddenType::class,
+                    [
+                'data' => 0
+                    ])
         ;
     }
 

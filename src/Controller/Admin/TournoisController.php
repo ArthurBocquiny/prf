@@ -2,11 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\InscriptionTournois;
 use App\Entity\Tournois;
 use App\Form\TournoisType;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
 * @Route("/tournois")
@@ -15,11 +16,21 @@ class TournoisController extends Controller
 {
     /**
      * @Route("/")
+     * 
      */
     public function index()
     {
         $repository = $this->getDoctrine()->getRepository(Tournois::class);
         $tournois = $repository->findAll();
+        
+        for($i = 0; $i < count($tournois); $i++)
+        {
+            $idtour = $tournois[$i]->getId();
+            $userTournois = $this->getDoctrine()->getRepository(InscriptionTournois::class);
+            $nbuser = count($userTournois->selectUserTournois($idtour));
+            $tournois[$i]->setNbParticipantActuel($nbuser);
+            
+        }
         
         return $this->render(
                 'admin/tournois/index.html.twig',

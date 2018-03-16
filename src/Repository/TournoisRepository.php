@@ -32,5 +32,7 @@ class TournoisRepository extends ServiceEntityRepository
             return $qb->getQuery()->getResult();
         ;
     }
+
+   
     
 }
