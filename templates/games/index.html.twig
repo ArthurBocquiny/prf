@@ -1,5 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="jeux"></div>
+    <h1>Jeux Esport</h1>
+    {% for jeu in jeux %}
+        {% if jeu.cover is defined %}
+                <img src="{{ jeu.cover.url }}">
+        {% endif %}
+        <h2>{{ jeu.name }}</h2>
+    {% endfor %}
 {% endblock %}

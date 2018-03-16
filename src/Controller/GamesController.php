@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Tournois;
+use Buzz\Browser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use function dump;
 
 class GamesController extends Controller
 {
@@ -12,19 +15,42 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $browser = new \Buzz\Browser();
+        $browser = new Browser();
 
-        $search = 'Halo3';
         
-        $response = $browser->get('https://api-endpoint.igdb.com/games/?fields=*&search=' . $search, ['user-key' => '1da94eeed8524c769b940cd570045f1f']);
-        dump($response->getContent());
-        $infos = json_decode($response->getContent());
-        dump(str_replace('t_thumb', 't_cover_big', $infos[0]->cover->url));
+        $repository = $this->getDoctrine()->getRepository(Tournois::class);
+        
+        $games = $repository->findAll();
+        
+        for($i = 0; $i < count($games); $i++)
+        {    
+            $gamesNames[] = $games[$i]->getJeu();
+        }
+        
+        for($i = 0; $i < count($gamesNames); $i++)
+        {
+            $j = 0;
+            $response = $browser->get('https://api-endpoint.igdb.com/games/?fields=*&search='.$gamesNames[$i], ['user-key' => '1da94eeed8524c769b940cd570045f1f']);
+            $infos = json_decode($response->getContent());
+            foreach($infos as $key => $value)
+            {
+                if ( $infos[$j]->name == $gamesNames[$i])
+                {
+                    $jeux[] = $infos[$j];
+                }
+                $j++;
+            }
+                
+            $infos = '';    
+        }
         
         
 
-        return $this->render('games/index.html.twig', [
-            'controller_name' => 'GamesController',
-        ]);
+        return $this->render(
+                'games/index.html.twig',
+                [
+                    'jeux' => $jeux,
+                ]
+        );
     }
 }
