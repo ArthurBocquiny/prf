@@ -13,12 +13,12 @@
         {{ form_start(form) }}
             {{ form_row(form.id_user,{'value' : app.user.id}) }}
             {{ form_row(form.id_tournois,{'value' : selectedtournois.id}) }}
-        {{ form_end(form) }}
-        
             <button type="submit"
                     class="btn btn-primary">
                 S'inscrire
             </button>
+        {{ form_end(form) }}
+        
         
         {% else  %}
             <a href="{{ path('app_security_login') }}"

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>Organiser un tournois</h1>
+    <h1>Organiser un tournois pour : {{ app.request.query.get("game_name") }}</h1>
     
     {{ form_start(form) }}
         {{ form_row(form.jeu) }}

@@ -18,7 +18,20 @@ class NewsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, News::class);
     }
-
+    
+    
+    public function findNewNews($limit)
+    {
+        $qb = $this->createQueryBuilder('t');
+        
+        $qb
+            ->orderBy('t.date', 'ASC')
+            ->setMaxResults($limit);
+            
+            
+            return $qb->getQuery()->getResult();
+        ;
+    }
     /*
     public function findBySomething($value)
     {
