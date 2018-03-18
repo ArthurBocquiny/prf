@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\InscriptionTournois;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -45,18 +47,6 @@ class InscriptionTournoisRepository extends ServiceEntityRepository
             ->setParameter('id_user', $actuser);
 
             return $qb->getQuery()->getResult();
-       
     }
-    /*
-    public function findBySomething($value)
-    {
-        return $this->createQueryBuilder('i')
-            ->where('i.something = :value')->setParameter('value', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+
 }

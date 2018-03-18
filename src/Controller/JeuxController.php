@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\InscriptionTournois;
 use App\Entity\Tournois;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Form\InscriptionTournoisType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,10 +31,33 @@ class JeuxController extends Controller
             ]);
     }
     
+    
+    public function sendMail($name, \Swift_Mailer $mailer, $tournois, $mailuser)
+    {
+        $message = (new \Swift_Message("Votre inscription au tournois $tournois"))
+            ->setFrom('PLS@pixellovesport.com')
+            ->setTo($mailuser)
+            ->setBody(
+                $this->renderView(
+                    'emails/inscriptiontournois.html.twig',
+                    array('name' => $name)
+                ),
+                'text/html'
+            );
+        
+            $mailer->send($message);
+            
+        return $this->render('emails/inscriptiontournois.html.twig',
+                [
+                    'name' => $name,
+                ]);
+    }
+    
+    
     /**
      * @Route("/fichetournois/{id}", defaults={"id" :null})
      */
-    public function fichetournois( Request $request, $id)
+    public function fichetournois( \Swift_Mailer $mailer, Request $request, $id)
     {
         
         $em = $this->getDoctrine()->getManager();
@@ -48,9 +73,13 @@ class JeuxController extends Controller
         $form = $this->createForm(InscriptionTournoisType::class, $tournois);
         
         $actuser = $this->getUser();
+        $emailuser = $this->getUser()->getEmail();
         $repository = $this->getDoctrine()->getRepository(InscriptionTournois::class);
         $insctournois = count($repository->grossePute($id, $actuser));
-        dump($insctournois);
+
+        $nomselectedtournois = $selectedtournois->getJeu();
+        $nomactuser = $this->getUser()->getPseudo();
+              
         
         $form->handleRequest($request);
         
@@ -59,6 +88,8 @@ class JeuxController extends Controller
                 
                 $em->persist($tournois);
                 $em->flush();
+                
+                $this->sendMail($nomactuser, $mailer, $nomselectedtournois, $emailuser);
                
                 $this->addFlash('success', 'Vous êtes inscrit !');
                
@@ -79,6 +110,5 @@ class JeuxController extends Controller
                 'insctournois' => $insctournois
             ]);
     }
-    
-   
+ 
 }

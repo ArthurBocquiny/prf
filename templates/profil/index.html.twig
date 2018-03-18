@@ -6,4 +6,20 @@
     <p>Email : {{ app.user.email }}</p>
     <p>Pays : {{ user_country }}</p>
     <p>Date de naissance : {{ app.user.birthdate | date('d/m/Y') }}</p>
+    
+    {% if tournoisusers[0] > 1 %}
+        <h2>Tournois à venir auxquels vous êtes inscrit</h2>
+    {% else %}
+        <h2>Tournois à venir auquel vous êtes inscrit</h2>
+    {% endif %}
+    
+    {% for tournoisuser in tournoisusers %}
+        {{ tournoisuser.jeu }}
+        {{ tournoisuser.date|date('d/m/Y à h:i') }}
+            <a href="{{ path('app_profil_delete', {id: tournoisuser.id}) }}" class="btn btn-danger">
+                        Se désinscrire
+            </a> 
+        <br>
+    {% endfor %}
+    
 {% endblock %}

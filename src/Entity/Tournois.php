@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\InscriptionTournois;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,6 +15,7 @@ class Tournois
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\InscriptionTournois", inversedBy="tournois")
      */
     private $id;
 
