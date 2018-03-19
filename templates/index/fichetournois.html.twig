@@ -9,7 +9,7 @@
         <p>{{ selectedtournois.description }}</p>
         
             
-    {% if nbuser < selectedtournois.nbParticipantMax %}
+    {% if selectedtournois.nbParticipantMax %}
         
         {% if app.user %}
         {{ form_start(form) }}

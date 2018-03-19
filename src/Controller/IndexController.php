@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\InscriptionTournois;
 use App\Entity\Tournois;
 use App\Entity\News;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Form\InscriptionTournoisType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,17 +33,59 @@ class IndexController extends Controller
             ]);
     }
     
-    /**
+    
+    public function sendMail($name, \Swift_Mailer $mailer, $tournois, $mailuser)
+    {
+        $message = (new \Swift_Message("Votre inscription au tournois $tournois"))
+            ->setFrom('PLS@pixellovesport.com')
+            ->setTo($mailuser)
+            ->setBody(
+                $this->renderView(
+                    'emails/inscriptiontournois.html.twig',
+                    array('name' => $name)
+                ),
+                'text/html'
+            );
+        
+            $mailer->send($message);
+            
+        return $this->render('emails/inscriptiontournois.html.twig',
+                [
+                    'name' => $name,
+                ]);
+    }
+    
+     /**
      * @Route("/fichetournois/{id}", defaults={"id" :null})
      */
-    public function fichetournois( Request $request, $id)
+    public function fichetournois( \Swift_Mailer $mailer, Request $request, $id)
     {
         
         $em = $this->getDoctrine()->getManager();
         $selectedtournois = $em->find(Tournois::class, $id);
         
+        $actuser = $this->getUser();
+         
+        // Nombre de participants
+        $userTournois = new Tournois();
+        $userTournois = $this->getDoctrine()->getRepository(InscriptionTournois::class);
+        $nbuser = count($userTournois->selectUserTournois($id));
+        // --------------
+        
         $tournois = new InscriptionTournois();
         $form = $this->createForm(InscriptionTournoisType::class, $tournois);
+        
+        
+        $repository = $this->getDoctrine()->getRepository(InscriptionTournois::class);
+        $insctournois = count($repository->grossePute($id, $actuser));
+
+       
+        if ($actuser !== null){
+            
+            $emailuser = $this->getUser()->getEmail();
+            $nomselectedtournois = $selectedtournois->getJeu();
+            $nomactuser = $this->getUser()->getPseudo();
+        }
         
         $form->handleRequest($request);
         
@@ -50,6 +94,8 @@ class IndexController extends Controller
                 
                 $em->persist($tournois);
                 $em->flush();
+                
+                $this->sendMail($nomactuser, $mailer, $nomselectedtournois, $emailuser);
                
                 $this->addFlash('success', 'Vous êtes inscrit !');
                
@@ -65,25 +111,9 @@ class IndexController extends Controller
             'index/fichetournois.html.twig',
             [
                 'selectedtournois' => $selectedtournois,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'nbuser' => $nbuser,
+                'insctournois' => $insctournois
             ]);
     }
-}
-
-/**
-* @Route("/jeux")
-*/
-class JeuxController extends Controller
-{
-    /**
-     * @Route("/")
-     */
-    public function index()
-    {
-        
-    }
-    
-    
-    
-   
 }
