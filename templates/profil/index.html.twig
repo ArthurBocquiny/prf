@@ -6,4 +6,16 @@
     <p>Email : {{ app.user.email }}</p>
     <p>Pays : {{ user_country }}</p>
     <p>Date de naissance : {{ app.user.birthdate | date('d/m/Y') }}</p>
+    
+        <h2>Tournois à venir auxquels vous êtes inscrit</h2>
+        
+    {% for tournoisuser in tournoisusers %}
+        {{ tournoisuser.jeu }}
+        {{ tournoisuser.date|date('d/m/Y à h:i') }}
+            <a href="{{ path('app_profil_delete', {id: tournoisuser.id}) }}" class="btn btn-danger">
+                        Se désinscrire
+            </a> 
+        <br>
+    {% endfor %}
+    
 {% endblock %}

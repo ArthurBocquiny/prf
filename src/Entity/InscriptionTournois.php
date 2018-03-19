@@ -19,12 +19,14 @@ class InscriptionTournois
     /**
      * @ORM\Column(type="integer")
      * @var int 
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="user")
      */
     private $id_user;
     
     /**
      * @ORM\Column(type="integer")
      * @var int 
+     * @ORM\OneToMany(targetEntity="App\Entity\Tournois", mappedBy="tournois")
      */
     private $id_tournois;
     
