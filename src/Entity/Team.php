@@ -31,6 +31,12 @@ class Team
      * @ORM\Column()
      * @var user
      */
-    private $player;
+    private $id_user;
+    
+    /**
+     * @ORM\                 
+     * @var string
+     */
+    private $game;
     
 }

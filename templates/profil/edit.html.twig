@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Modification de votre profil</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.pseudo) }}
+    {{ form_row(form.country) }}
+    {{ form_row(form.birthdate) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    <div class="form-btn-group pull-right">
+        <button type="submit" class="btn btn-primary">
+            Enregistrement
+        </button>
+        <a href="{{ path('app_profil_index') }}" class="btn btn-default">
+            Retour
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
