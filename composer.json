@@ -19,19 +19,20 @@
         "symfony/process": "^4.0",
         "symfony/security-bundle": "^4.0",
         "symfony/serializer-pack": "*",
-        "symfony/swiftmailer-bundle": "^3.1",
         "symfony/validator": "^4.0",
         "symfony/web-link": "^4.0",
         "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "swiftmailer/swiftmailer": "dev-master",
         "symfony/browser-kit": "^4.0",
         "symfony/css-selector": "^4.0",
         "symfony/dotenv": "^4.0",
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^4.0",
         "symfony/profiler-pack": "*",
+        "symfony/swiftmailer-bundle": "dev-master",
         "symfony/web-server-bundle": "^4.0"
     },
     "config": {
