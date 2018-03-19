@@ -63,6 +63,8 @@ class JeuxController extends Controller
         $em = $this->getDoctrine()->getManager();
         $selectedtournois = $em->find(Tournois::class, $id);
         
+        $actuser = $this->getUser();
+         
         // Nombre de participants
         $userTournois = new Tournois();
         $userTournois = $this->getDoctrine()->getRepository(InscriptionTournois::class);
@@ -72,14 +74,17 @@ class JeuxController extends Controller
         $tournois = new InscriptionTournois();
         $form = $this->createForm(InscriptionTournoisType::class, $tournois);
         
-        $actuser = $this->getUser();
-        $emailuser = $this->getUser()->getEmail();
+        
         $repository = $this->getDoctrine()->getRepository(InscriptionTournois::class);
         $insctournois = count($repository->grossePute($id, $actuser));
 
-        $nomselectedtournois = $selectedtournois->getJeu();
-        $nomactuser = $this->getUser()->getPseudo();
-              
+       
+        if ($actuser !== null){
+            
+            $emailuser = $this->getUser()->getEmail();
+            $nomselectedtournois = $selectedtournois->getJeu();
+            $nomactuser = $this->getUser()->getPseudo();
+        }
         
         $form->handleRequest($request);
         
