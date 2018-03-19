@@ -8,10 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use function dump;
 
+/**
+ * @Route("/games")
+ */
 class GamesController extends Controller
 {
     /**
-     * @Route("/games", name="games")
+     * @Route("/")
      */
     public function index()
     {

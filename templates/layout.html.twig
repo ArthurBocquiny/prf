@@ -22,6 +22,9 @@
 
         <ul class="nav navbar-nav">
             
+            <li>
+                <a href="{{ path('app_games_index') }}">Jeux</a>
+            </li>
         {% if is_granted('ROLE_ADMIN') %}
             <li><a>MENU ADMIN</a></li>
             <li><a href="{{ path('app_admin_news_index') }}">News</a></li>
@@ -30,7 +33,6 @@
             <li><a href="{{ path('app_admin_tournois_index') }}">Tournois</a></li>
         {% endif %}
         
-            <li><a href="#">Jeux</a></li>
             
         </ul>
         <ul class="nav navbar-nav navbar-right">
