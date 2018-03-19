@@ -10,6 +10,7 @@
             <th>Catégorie</th>
             <th>Date</th>
             <th>Nb participant Max</th>
+            <th>Nb participant Actuel</th>
             <th width="200px"></th>
         </tr>
         {% for tournoi in tournois %}
@@ -18,6 +19,7 @@
             <td>{{ tournoi.categorie }}</td>
             <td>{{ tournoi.date|date("d/m/Y H:i") }}</td>
             <td>{{ tournoi.nbParticipantMax }}</td>
+            <td>{{ tournoi.nbParticipantActuel }}</td>
             <td>
                 <a href="{{ path('app_admin_tournois_delete', {id: tournoi.id}) }}" class="btn btn-danger">
                     Supprimer

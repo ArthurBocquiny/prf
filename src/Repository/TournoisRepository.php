@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\InscriptionTournois;
 use App\Entity\Tournois;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -33,4 +34,20 @@ class TournoisRepository extends ServiceEntityRepository
         ;
     }
     
+    public function tournoisUser($iduser)
+    {
+        $connect = $this->getEntityManager()->getConnection();
+        
+        $sql =  "SELECT t.jeu, t.date, i.id
+                FROM tournois t
+                JOIN inscription_tournois i
+                WHERE i.id_tournois = t.id
+                AND i.id_user =".$iduser;
+        
+        $result = $connect->query($sql);
+            
+            return $result->fetchAll();
+        ;
+    }
+        
 }

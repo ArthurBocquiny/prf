@@ -8,24 +8,47 @@
     <h3>Le {{ selectedtournois.date|date('d/m/y à h:i') }}</h3>
         <p>{{ selectedtournois.description }}</p>
         
-        {% if app.user %}
             
+    {% if nbuser < selectedtournois.nbParticipantMax %}
+        
+        {% if app.user %}
         {{ form_start(form) }}
             {{ form_row(form.id_user,{'value' : app.user.id}) }}
             {{ form_row(form.id_tournois,{'value' : selectedtournois.id}) }}
-            <button type="submit"
-                    class="btn btn-primary">
-                S'inscrire
-            </button>
-        {{ form_end(form) }}
-        
-        
-        {% else  %}
+            
+            {% if insctournois > 0 %}
+                <div class="btn btn-primary" disabled>
+                    Vous êtes déjà inscrit
+                </div>
+            {% else %}
+                <button type="submit" class="btn btn-primary">
+                    S'inscrire
+                </button>
+            {% endif %}
+
+        {% else %}
+            
             <a href="{{ path('app_security_login') }}"
                     class="btn btn-primary">
                 Se connecter pour s'inscrire
             </a>
+                    
+            <p>Vous n'avez pas de compte ? <br>
+                <a href="{{ path('app_security_register') }}">
+                 Inscription
+                </a>
+            </p>
         {% endif %}
+
+    {% else %}
+        <div class="btn disabled">
+            Tournois complet
+        </div>
+    {% endif %}
+        
+        {{ form_end(form) }}
+        
+        
         
         
 {% endblock %}

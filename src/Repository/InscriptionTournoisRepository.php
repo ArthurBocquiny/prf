@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\InscriptionTournois;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -16,19 +18,35 @@ class InscriptionTournoisRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Inscription::class);
+        parent::__construct($registry, InscriptionTournois::class);
+    }
+    
+     
+    public function selectUserTournois($id)
+    {
+        $qb = $this->createQueryBuilder('i');
+        
+        $qb
+            ->andWhere('i.id_tournois = :id_tournois')
+            ->setParameter('id_tournois', $id);
+            
+            
+            
+            return $qb->getQuery()->getResult();
+   
+    }
+     
+    public function grossePute($id, $actuser)
+    {
+        $qb = $this->createQueryBuilder('i');
+        
+        $qb
+            ->andWhere('i.id_tournois = :id_tournois')
+            ->andWhere('i.id_user = :id_user')
+            ->setParameter('id_tournois', $id)
+            ->setParameter('id_user', $actuser);
+
+            return $qb->getQuery()->getResult();
     }
 
-    /*
-    public function findBySomething($value)
-    {
-        return $this->createQueryBuilder('i')
-            ->where('i.something = :value')->setParameter('value', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 }
