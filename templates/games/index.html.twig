@@ -2,10 +2,19 @@
 
 {% block content %}
     <h1>Jeux Esport</h1>
+    <div class="row">
     {% for jeu in jeux %}
         {% if jeu.cover is defined %}
-                <img src="{{ jeu.cover.url }}">
+            
+                <div class="col-xs-6 col-md-3">
+                    <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}" class="thumbnail">
+                        <img src="{{ jeu.cover.url }}" alt="..." style="width: 250px">
+                    </a>
+        
+                    <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}"><h2 class="text-center">{{ jeu.name }}</h2></a>
+                </div>
+            
         {% endif %}
-        <h2>{{ jeu.name }}</h2>
     {% endfor %}
+    </div>
 {% endblock %}
