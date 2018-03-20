@@ -38,12 +38,6 @@ class Clan
     
     /**
      * @ORM\Column(nullable=true)
-     * @var string
-     */
-    private $teams;
-    
-    /**
-     * @ORM\Column(nullable=true)
      * @Assert\Image()
      * @var string
      */

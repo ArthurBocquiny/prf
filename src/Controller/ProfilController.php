@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Tournois;
 use App\Entity\InscriptionTournois;
+use App\Entity\Tournois;
+use App\Entity\User;
+use App\Form\UserEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Intl\Intl;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
     /**
@@ -56,11 +60,52 @@ class ProfilController extends Controller
         }
     }
     
-    
-     /**
-     * @Route("/delete/{id}")
+    /**
+     * @Route("/edit/{id}")
      * @param int $id
      */
+    public function edit(Request $request,$id, UserPasswordEncoderInterface $passwordEncoder){
+        
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->find(User::class, $id);
+        
+        $form = $this->createForm(UserEditType::class, $user);
+        
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                $password = $passwordEncoder->encodePassword(
+                       $user,
+                       $user->getPlainPassword()
+                );
+               $user->setPassword($password);
+               $em = $this->getDoctrine()->getManager();
+               $em->persist($user);
+               $em->flush();
+               
+               $this->addFlash('success', "Votre profil a été modifié");
+               return $this->redirectToRoute('app_profil_index');
+            }
+            else{
+                $this->addFlash('error', 'Le formulaire contient des erreurs');
+            }
+        }
+        
+        return $this->render(
+        '/profil/edit.html.twig',
+        [
+            'form' => $form->createView()
+        ]
+        );
+    }
+      
+    /**
+    * @Route("/delete/{id}")
+    * @param int $id
+    */
     public function delete($id){
         $em = $this->getDoctrine()->getManager();
         $inscription = $em->find(InscriptionTournois::class, $id);

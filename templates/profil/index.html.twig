@@ -6,7 +6,7 @@
     <p>Email : {{ app.user.email }}</p>
     <p>Pays : {{ user_country }}</p>
     <p>Date de naissance : {{ app.user.birthdate | date('d/m/Y') }}</p>
-    
+    <a href="{{path ('app_profil_edit',{id: user.id}) }}">Modifier vos informations</a>
         <h2>Tournois à venir auxquels vous êtes inscrit</h2>
         
     {% for tournoisuser in tournoisusers %}
