@@ -7,8 +7,17 @@
     {% for jeu in jeux %}
         <div class="col-md-4 cadre">
         {% if jeu.cover is defined %}
-                <img src="{{ jeu.cover.url }}">
+            
+                <div class="col-xs-6 col-md-3">
+                    <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}" class="thumbnail">
+                        <img src="{{ jeu.cover.url }}" alt="..." style="width: 250px">
+                    </a>
+        
+                    <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}"><h2 class="text-center">{{ jeu.name }}</h2></a>
+                </div>
+            
         {% endif %}
+
         <h2>{{ jeu.name }}</h2>
         </div>
     {% endfor %}

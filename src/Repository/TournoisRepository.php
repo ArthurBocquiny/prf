@@ -42,7 +42,19 @@ class TournoisRepository extends ServiceEntityRepository
                 FROM tournois t
                 JOIN inscription_tournois i
                 WHERE i.id_tournois = t.id
-                AND i.id_user =".$iduser;
+                AND i.id_user =".$iduser." ORDER BY date";
+        
+        $result = $connect->query($sql);
+            
+            return $result->fetchAll();
+        ;
+    }
+    public function tournoisJeuName()
+    {
+        $connect = $this->getEntityManager()->getConnection();
+        
+        $sql =  "SELECT DISTINCT jeu 
+                FROM tournois";
         
         $result = $connect->query($sql);
             
