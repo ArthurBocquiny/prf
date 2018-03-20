@@ -4,12 +4,13 @@
     <h1>Nous contacter</h1>
     
     {% if app.user is null%}
-        {{ form_start(form) }}
+        {{ form_start(form, {attr : {id : 'form' }}) }}
+        <img src="{{asset('upload/logocontact.png')}}" alt="logo" class="logoform"/>
         {{ form_row(form.name) }}
         {{ form_row(form.email)}}
         {{ form_row(form.object) }}
         {{ form_row(form.message) }}
-        <div class="form-btn-group pull-right">
+        <div class="form-group pull-right">
                <button type="submit" class="btn btn-primary">
                    Envoi
                </button>

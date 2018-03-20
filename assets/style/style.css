@@ -1,4 +1,41 @@
-nav{
+.navbar {
     border-radius : 0;
+    height:60px;
+}
+
+#barre
+{
+    height:200px;
+}
+
+.banner
+{
+    height:100px;
+    background: #123667;
+}
+
+.banner img{
+    height:100px;
+}
+
+.bouton
+{
+ transition:.3s;
+ height:60px;
+}
+
+.bouton:hover
+{
+    background:#123667;
+    height:110%;
+}
+
+body {
+    background:black;
+}
+
+.navbar-brand
+{
+    background:url("../upload/logocouleurs2.png");
 }
 
