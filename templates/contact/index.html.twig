@@ -18,12 +18,8 @@
         {{ form_end(form) }}
     {% else %}
         {{ form_start(form) }}
-        <div>
-            {{ form_row(form.name) }}
-        </div>
-        <div>
-            {{ form_row(form.email) }}
-        </div>
+        {{ form_widget(form.name,{'type': 'hidden'}) }}
+        {{ form_widget(form.email,{'type': 'hidden'}) }}
         {{ form_row(form.object) }}
         {{ form_row(form.message) }}
             <div class="form-btn-group pull-right">
