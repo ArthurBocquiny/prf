@@ -19,8 +19,8 @@
     
     <header>
         <div class="banner">
-            <img src="{{ asset('upload/logocouleurs1.png')}}" alt="logo"/>
-            <img class="imgbanner" src="{{ asset('upload/titlebanner4.png')}}" alt="logo"/>
+            <a href="{{path('app_index_index')}}"><img src="{{ asset('upload/logocouleurs1.png')}}" alt="logo"/></a>
+            <a href="{{path('app_index_index')}}"><img class="imgbanner" src="{{ asset('upload/bannieretexte8.png')}}" alt="logo"/></a>
             
         </div>
    
@@ -33,37 +33,37 @@
             </li>
         {% if is_granted('ROLE_ADMIN') %}
             <li><a>MENU ADMIN</a></li>
-            <li class="bouton"><a href="{{ path('app_admin_news_index') }}">News</a></li>
-            <li class="bouton"><a href="{{ path('app_admin_users_index') }}">Users</a></li>
-            <li class="bouton"><a href="{{ path('app_admin_clan_index') }}">Clan</a></li>
-            <li class="bouton"><a href="{{ path('app_admin_tournois_index') }}">Tournois</a></li>
+            <li class="bouton" id="bouton"><a href="{{ path('app_admin_news_index') }}">News</a></li>
+            <li class="bouton" id="bouton"><a href="{{ path('app_admin_users_index') }}">Users</a></li>
+            <li class="bouton" id="bouton"><a href="{{ path('app_admin_clan_index') }}">Clan</a></li>
+            <li class="bouton" id="bouton"><a href="{{ path('app_admin_tournois_index') }}">Tournois</a></li>
         {% endif %}
         
             
         </ul>
         <ul class="nav navbar-nav navbar-right">
                 {% if app.user is null %}
-                    <li class="bouton">
+                    <li class="bouton" id="bouton">
                         <a href="{{ path('app_security_register') }}">
                             Inscription
                         </a>
                     </li>
-                    <li class="bouton">
+                    <li class="bouton" id="bouton">
                         <a href="{{ path('app_security_login') }}">
                             Connexion
                         </a>
                     </li>
                 {% else %}
-                    <li class="bouton">
+                    <li class="bouton" id="bouton">
                         <a  href="{{ path('app_profil_index') }}"> {{ app.user.pseudo }} </a>
                     </li>
-                    <li class="bouton">
-                        <a href="{{ path('app_security_logout') }}">
+                    <li class="bouton" id="bouton">
+                            <a href="{{ path('app_security_logout') }}">
                             Déconnexion
                         </a>
                     </li>
                 {% endif%}
-                    <li class="bouton">
+                    <li class="bouton" id="bouton">
                         <a href="{{ path('app_contact_index') }}">
                             Contact
                         </a>
@@ -72,7 +72,7 @@
         </div>
     </nav>
     </header>
-                            
+<div class="row">                            
 <div class="conteneur col-md-8 col-md-offset-2">
    
     <div class="container-fluid">
@@ -89,7 +89,14 @@
         {% endfor %}
     {% block content %}{% endblock %}
     </div>
-    
 </div>
+</div>
+    
+<footer class="footer">
+    <div class="text-center">
+            <img src="{{asset("upload/logonoir.png")}}" alt="logo">
+            <span class="text-center">Copyright - tous droits réservés - WF3 2018</span>
+    </div>
+</footer>
     
 {% endblock %}

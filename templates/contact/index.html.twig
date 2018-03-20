@@ -1,11 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Nous contacter</h1>
+    <h1 class="text-center">Nous contacter</h1>
     
     {% if app.user is null%}
         {{ form_start(form, {attr : {id : 'form' }}) }}
-        <img src="{{asset('upload/logocontact.png')}}" alt="logo" class="logoform"/>
+        <img src="{{asset('upload/logocontactrond.png')}}" alt="logo" class="logoform"/>
         {{ form_row(form.name) }}
         {{ form_row(form.email)}}
         {{ form_row(form.object) }}
@@ -17,7 +17,8 @@
            </div>
         {{ form_end(form) }}
     {% else %}
-        {{ form_start(form) }}
+        {{ form_start(form, {attr : {id : 'form' }}) }}
+        <img src="{{asset('upload/logocontactrond.png')}}" alt="logo" class="logoform"/>
         {{ form_widget(form.name,{'type': 'hidden'}) }}
         {{ form_widget(form.email,{'type': 'hidden'}) }}
         {{ form_row(form.object) }}

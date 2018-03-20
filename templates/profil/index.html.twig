@@ -1,11 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <img src="{{asset('upload/epeelogorond.png')}}" alt="logo" class="logoform"/>
     <h1>{{ app.user.pseudo }}</h1>
+    <div class="cadre">
     <p>Prénom, Nom : {{ app.user.firstname }} {{ app.user.lastname }}</p>
     <p>Email : {{ app.user.email }}</p>
     <p>Pays : {{ user_country }}</p>
     <p>Date de naissance : {{ app.user.birthdate | date('d/m/Y') }}</p>
+    </div>
     <a href="{{path ('app_profil_edit',{id: user.id}) }}">Modifier vos informations</a>
         <h2>Tournois à venir auxquels vous êtes inscrit</h2>
         
