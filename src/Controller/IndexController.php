@@ -61,9 +61,10 @@ class IndexController extends Controller
     {
         
         $em = $this->getDoctrine()->getManager();
+        $insctournois = 0;
+        $insctournoisclan = 0;
         $selectedtournois = $em->find(Tournois::class, $id);
         
-        $actuser = $this->getUser();
          
         // Nombre de participants
         $userTournois = new Tournois();
@@ -74,20 +75,25 @@ class IndexController extends Controller
         $tournois = new InscriptionTournois();
         $form = $this->createForm(InscriptionTournoisType::class, $tournois);
         
-        
-        $idClan = $this->getUser()->getIdClan();
-        
         $repository = $this->getDoctrine()->getRepository(InscriptionTournois::class);
-        $insctournois = count($repository->grossePute($id, $actuser));
-        $insctournoisclan = count($repository->grossePuteB($id, $idClan));
+        
+        if ( null != $this->getUser())
+        {
+            $actuser = $this->getUser();
+            $idClan = $this->getUser()->getIdClan();
+            $insctournois = count($repository->grossePute($id, $actuser));
+            $insctournoisclan = count($repository->grossePuteB($id, $idClan));
+            if ($actuser !== null)
+            {
+                $emailuser = $this->getUser()->getEmail();
+                $nomselectedtournois = $selectedtournois->getJeu();
+                $nomactuser = $this->getUser()->getPseudo();
+            }
+        }
+        
 
        
-        if ($actuser !== null){
-            
-            $emailuser = $this->getUser()->getEmail();
-            $nomselectedtournois = $selectedtournois->getJeu();
-            $nomactuser = $this->getUser()->getPseudo();
-        }
+     
         
         $form->handleRequest($request);
         

@@ -17,7 +17,7 @@
             {{ form_row(form.id_clan,{'value' : app.user.idClan}) }}
             {{ form_row(form.id_tournois,{'value' : selectedtournois.id}) }}
             
-            {% if insctournois > 0 or insctournoisclan > 0 %}
+            {% if (insctournois or insctournoisclan) > 0 %}
                 <div class="btn btn-primary" disabled>
                     Vous êtes déjà inscrit
                 </div>
