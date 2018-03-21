@@ -46,18 +46,25 @@ body
     background:url('../upload/fonddef5.png');
 }
 
-.imgbanner
+
+@media(max-width:1270px)
 {
-    height:100%;
-    margin-left:10%;
+    .imgbanner
+    {
+        display:none;
+    }
 }
 
+
+    .imgbanner
+    {
+        height:100%;
+        margin-left:10%;
+    }
 .banner
 {
     height:100px;
-    
-
-background: #FFD100;
+    background: #FFD100;
 
 }
 
@@ -138,7 +145,7 @@ background: #FFD100;
     border:1px dotted black;
     padding:1%;
     margin-bottom:1%;
-    min-height:600px;
+    min-height:650px;
 }
 
 .nav, .navbar
