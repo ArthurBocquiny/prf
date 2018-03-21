@@ -1,8 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    
+    <img src="{{asset('upload/logonews.png')}}" alt="logo" class="logoform"/>
 
-    <h1>Insérer un article</h1>
+    <h1 class="text-center">Insérer un article</h1>
     
     {{ form_start(form) }}
         {{ form_row(form.titre) }}

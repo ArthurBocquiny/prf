@@ -1,7 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Ajout de clan</h1>
+    
+    <img src="{{asset('upload/bouclierlogorond.png')}}" alt="logo" class="logoform"/>
+    <h1 class="text-center">Ajout de clan</h1>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.id_user, {'value': app.user.id}) }}

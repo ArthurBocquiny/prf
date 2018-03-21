@@ -1,8 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-    <h1>Modification de votre profil</h1>
+    <h1 class="text-center">Modification de votre profil</h1>
     {{ form_start(form, {attr : {id : 'form' }}) }}
     <img src="{{asset('upload/epeelogorond.png')}}" alt="logo" class="logoform"/>
     {{ form_row(form.firstname) }}

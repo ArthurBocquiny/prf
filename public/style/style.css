@@ -6,7 +6,10 @@ body
     font-weight:bold;
 }
 
-
+h1, h2, h3
+{
+    text-decoration:overline;
+}
 h1, h2, h3
 {
     font-family: 'Russo One', sans-serif;
@@ -16,21 +19,26 @@ h1, h2, h3
 {
     transition:.3s;
     color:black;
+    border:1px solid white;
+    background:#FFD100;
 }
-.bouton:hover
+.bouton:hover, .bouton:active
 {
-    background:#123667;
+    background:black;
 }
 
+
+
+header 
+{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:4;
+}
 #bouton
-
-.conteneur
 {
-    background:rgba(255, 255, 255, 0.9);
-    margin-top:40px;
-    padding-top: 30px;
-    padding-bottom: 25px;
-    margin-bottom: 40px;
+    color:black;
 }
 
 body 
@@ -52,10 +60,7 @@ body
 background: #FFD100;
 
 }
-.navbar-brand
-{
-    background:url("../upload/logocouleurs2.png");
-}
+
 .banner img{
     height:100%;
 }
@@ -63,10 +68,12 @@ background: #FFD100;
 .conteneur
 {   
     background:rgba(255, 255, 255, 0.9);
-    margin-top:40px;
+    margin-top:180px;
     border-radius:10px;
     padding-bottom: 25px;
+    padding-top: 25px;
     margin-bottom: 40px;
+    border:1px solid black;
 }
 
 .logoform
@@ -105,6 +112,7 @@ background: #FFD100;
     border-bottom:1px dotted rgb(23, 21, 51);
     box-shadow: 0px;
 
+
 }  
 
 #form input
@@ -128,9 +136,10 @@ background: #FFD100;
     color:black;
     background:#FFD100;
     border-radius:0;
-    border:none;
-    
+    background:black;
+     
 }
+
 .nav li a, .navbar li a
 {
     color:black;
@@ -168,3 +177,25 @@ footer span
     height: 300px ;
 }
 
+
+
+.navbar-inverse .navbar-nav > li > a
+{
+    color:black;
+}
+ .vert 
+ {
+     background:#67CC00;
+ }
+ 
+ .cyan
+ {
+     background:#05D5CD;
+ }
+ 
+ .rose
+ {
+     background:#FB52B2;
+ }
+ 
+ 

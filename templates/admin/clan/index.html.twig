@@ -1,8 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    
+    <img src="{{asset('upload/bouclierlogorond.png')}}" alt="logo" class="logoform"/>
 
-    <h1>Gestion Clans</h1>
+    <h1 class="text-center">Gestion Clans</h1>
     <h3><a href="{{ path('app_admin_clan_edit') }}">Ajouter un Clan</a></h3>
 
 <table class="table">
