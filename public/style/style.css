@@ -104,7 +104,7 @@ background: #FFD100;
     border:none;
     border-bottom:1px dotted rgb(23, 21, 51);
     box-shadow: 0px;
-<<<<<<< HEAD
+
 }  
 
 #form input
@@ -159,8 +159,7 @@ footer span
     text-align:center;
 }
 
-=======
-}
+
 
 /*---------PAGE JEUX----------*/
 
@@ -168,4 +167,4 @@ footer span
     width : 100% ;
     height: 300px ;
 }
->>>>>>> Grugrumf
+

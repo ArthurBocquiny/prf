@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
+class User implements UserInterface//, \Serializable
 {
     /**
      * @ORM\Id
@@ -71,11 +71,17 @@ class User implements UserInterface
     private $birthdate;
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var int
      */
     private $id_clan;
     
+         /** 
+     * @ORM\Column(nullable=true)
+     * @Assert\Image()
+     * @var string
+     */
+    private $photo;
     
     function getIdClan() {
         return $this->id_clan;
@@ -83,6 +89,16 @@ class User implements UserInterface
 
     function setIdClan($id_clan) {
         $this->id_clan = $id_clan;
+    }
+
+
+    function getPhoto() {
+        return $this->photo;
+    }
+
+    function setPhoto($photo) {
+        $this->photo = $photo;
+
         return $this;
     }
 
@@ -193,6 +209,4 @@ class User implements UserInterface
     public function __toString() {
         return $this->getFullname();
     }
-
-
 }
