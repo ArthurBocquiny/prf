@@ -22,6 +22,13 @@ class InscriptionTournois
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="user")
      */
     private $id_user;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @var int 
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="user")
+     */
+    private $id_clan;
     
     /**
      * @ORM\Column(type="integer")
@@ -49,6 +56,14 @@ class InscriptionTournois
     function setIdTournois($id_tournois) {
         $this->id_tournois = $id_tournois;
     }
+    function getIdClan() {
+        return $this->id_clan;
+    }
+
+    function setIdClan($id_clan) {
+        $this->id_clan = $id_clan;
+    }
+
 
 
 }

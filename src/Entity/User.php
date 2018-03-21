@@ -70,7 +70,23 @@ class User implements UserInterface
      */
     private $birthdate;
     
-    function getPseudo() {
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $id_clan;
+    
+    
+    function getIdClan() {
+        return $this->id_clan;
+    }
+
+    function setIdClan($id_clan) {
+        $this->id_clan = $id_clan;
+        return $this;
+    }
+
+        function getPseudo() {
         return $this->pseudo;
     }
 
@@ -177,4 +193,6 @@ class User implements UserInterface
     public function __toString() {
         return $this->getFullname();
     }
+
+
 }

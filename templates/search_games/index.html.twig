@@ -12,6 +12,8 @@
             <a href="{{ path('app_admin_tournois_insert') }}?game_name={{ info.name }}">
                 {% if info.cover is defined %}
                         <img src="{{ info.cover.url }}">
+                {% else %}
+                        <img src="{{ asset('upload/error.gif') }}">
                 {% endif %}
             </a>
             <h1>{{ info.name }}</h1>

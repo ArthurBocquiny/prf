@@ -2,14 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Tournois;
-use App\Entity\InscriptionTournois;
+use App\Entity\InscriptionTeam;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InscriptionTournoisType extends AbstractType
+class InscriptionTeamType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -17,18 +15,15 @@ class InscriptionTournoisType extends AbstractType
             ->add('id_user',
             HiddenType::class)
                 
-            ->add('id_tournois',
+            ->add('id_team',
             HiddenType::class)
-        
-            ->add('id_clan',
-            HiddenType::class)
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => InscriptionTournois::class,
+            'data_class' => InscriptionTeam::class,
         ]);
     }
 }

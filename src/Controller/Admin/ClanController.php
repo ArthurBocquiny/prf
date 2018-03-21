@@ -41,6 +41,7 @@ class ClanController extends Controller
         
         if (is_null($id)){//création
             $clan = new Clan();
+            
         } else {//modification
             $clan = $em->find(Clan::class, $id);
             
@@ -106,6 +107,7 @@ class ClanController extends Controller
             }
         }
         
+         
         return $this->render(
                 '/admin/clan/edit.html.twig',
                 [

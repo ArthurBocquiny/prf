@@ -48,5 +48,18 @@ class InscriptionTournoisRepository extends ServiceEntityRepository
 
             return $qb->getQuery()->getResult();
     }
+     
+    public function grossePuteB($id, $idClan)
+    {
+        $qb = $this->createQueryBuilder('i');
+        
+        $qb
+            ->andWhere('i.id_tournois = :id_tournois')
+            ->andWhere('i.id_clan = :id_clan')
+            ->setParameter('id_tournois', $id)
+            ->setParameter('id_clan', $idClan);
+
+            return $qb->getQuery()->getResult();
+    }
 
 }

@@ -18,5 +18,20 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
-   
+    
+    public function searchPseudoUser($pseudo) {
+        
+        /*return $this->createQueryBuilder('a')
+                ->where('a.pseudo = :pseudo')->setParameter('pseudo', $pseudo)
+                ->getQuery()->getResult()
+        ;*/
+        $qb = $this->createQueryBuilder('u');
+        
+        return $qb->where(
+                    $qb->expr()->like('u.pseudo', ':pseudo')
+                )
+                ->setParameter('pseudo',"%$pseudo%")
+                ->getQuery()
+                ->getResult();
+    }
 }

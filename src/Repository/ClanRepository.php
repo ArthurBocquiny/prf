@@ -18,7 +18,25 @@ class ClanRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Clan::class);
     }
-
+    
+    
+    public function searchIdUser($id) {
+        
+        return $this->createQueryBuilder('c')
+                ->where('c.id_user = :id_user')->setParameter('id_user', $id)
+                ->getQuery()->getResult()
+        ;
+    }
+    
+    
+      public function findNameClan($id) {
+        
+        return $this->createQueryBuilder('d')
+                ->where('d.id = :id')->setParameter('id', $id)
+                ->getQuery()->getResult()
+        ;
+    }
+    
     /*
     public function findBySomething($value)
     {
