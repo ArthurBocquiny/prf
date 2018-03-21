@@ -2,16 +2,17 @@
 
 namespace App\Form;
 
-use Symfony\Component\Intl\Intl;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Intl\Intl;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
@@ -67,6 +68,12 @@ class UserType extends AbstractType
                 'format' => 'dd-MM-yyyy'
             )        
             )
+            ->add('photo',
+            FileType::class,
+            [
+                'label'=> 'Photo',
+                'required'=> false
+            ])
             ->add('email',
             EmailType::class,
             [

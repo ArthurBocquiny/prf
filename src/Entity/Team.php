@@ -34,7 +34,7 @@ class Team
     private $id_user;
     
     /**
-     * @ORM\                 
+     * @ORM\Column()                 
      * @var string
      */
     private $game;

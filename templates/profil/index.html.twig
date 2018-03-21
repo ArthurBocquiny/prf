@@ -2,8 +2,17 @@
 
 {% block content %}
     <img src="{{asset('upload/epeelogorond.png')}}" alt="logo" class="logoform"/>
-    <h1>{{ app.user.pseudo }}</h1>
+    <h1 class="text-center">{{ app.user.pseudo }}</h1>
     <div class="cadre">
+       {% if app.user.photo is not null %}
+        <p>
+            <img src="{{ asset('upload/' ~ app.user.photo) }}" width="200px">
+        </p>
+        {% else %}
+        <p>
+            <img src="{{ asset('upload/profildefaut2.png') }}" width="200px">
+        </p>
+        {% endif %}
     <p>Prénom, Nom : {{ app.user.firstname }} {{ app.user.lastname }}</p>
     <p>Email : {{ app.user.email }}</p>
     <p>Pays : {{ user_country }}</p>

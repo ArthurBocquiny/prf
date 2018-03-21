@@ -262,6 +262,14 @@ class ProfilController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $user = $em->find(User::class, $id);
+        $originalImage = null;
+        
+        if(!is_null($user->getPhoto())){
+            $originalImage = $user->getPhoto();
+            $imagePath = $this->getParameter('upload_dir'). '/' .$originalImage;
+            // objet File pour le formulaire
+            $user->setPhoto(new File($imagePath));
+        }
         
         $form = $this->createForm(UserEditType::class, $user);
         
@@ -271,6 +279,40 @@ class ProfilController extends Controller
         {
             if($form->isValid())
             {
+
+                /**
+                 * @var UploadedFile $photo
+                 */
+                $photo = $user->getPhoto();
+               
+                //s'il ya une image uploadée
+                if(!is_null($photo)){
+                // nom du fichier que l'on enregistre
+                $filename = uniqid(). '.' . $photo->guessExtension();
+
+                // équivalent move_uploaded_file()
+                $photo->move(
+                     // upload_dir défini dans services.yaml
+                    $this->getParameter('upload_dir'),
+                    $filename
+                );
+
+                $user->setPhoto($filename);
+
+                // suppression
+                if (!is_null($originalImage)){
+                    unlink($this->getParameter('upload_dir'). '/' .$originalImage);
+                }
+                } else{
+                // getData sur une checkbox = true si coché
+                if($form->has('remove_photo') && $form->get('remove_photo')->getData()){
+                    $user->setPhoto(null);
+                    unlink($this->getParameter('upload_dir'). '/' .$originalImage);
+                }
+                else{
+                    $user->setPhoto($originalImage);
+                }
+            }
                 $password = $passwordEncoder->encodePassword(
                        $user,
                        $user->getPlainPassword()
@@ -286,6 +328,10 @@ class ProfilController extends Controller
             else{
                 $this->addFlash('error', 'Le formulaire contient des erreurs');
             }
+        }
+        
+        if ($user->getPhoto() instanceof File) {
+            $user->setPhoto($user->getPhoto()->getBasename());
         }
         
         return $this->render(

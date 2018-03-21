@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -69,13 +71,33 @@ class UserEditType extends AbstractType
                     ]
                 ]
             )
+            ->add('photo',
+                // input type file
+                FileType::class,
+                [
+                    'label' => 'Photo',
+                    'required' => false
+                ]
+            )
         ;
+        if(!is_null($options['data']->getPhoto())){
+            $builder->add(
+            'remove_photo',
+            CheckboxType::class,
+            [
+                'label' => "Supprimer la photo",
+                'required' => false,
+                // champ non relié à un attribut de l'entité Article
+                'mapped' => false
+            ]
+            );
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+           'data_class' => User::class,
         ]);
     }
 }

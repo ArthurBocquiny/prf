@@ -1,8 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-    <h1>Modification de votre profil</h1>
+    <h1 class="text-center">Modification de votre profil</h1>
     {{ form_start(form, {attr : {id : 'form' }}) }}
     <img src="{{asset('upload/epeelogorond.png')}}" alt="logo" class="logoform"/>
     {{ form_row(form.firstname) }}
@@ -12,6 +11,13 @@
     {{ form_row(form.birthdate) }}
     {{ form_row(form.email) }}
     {{ form_row(form.plainPassword) }}
+    {% if form.vars.value.photo is not null %}
+        <p>
+            Actuellement : 
+            <img src="{{ asset('upload/' ~ form.vars.value.photo) }}" width="200px">
+        </p>
+        {{ form_row(form.remove_photo) }}
+    {% endif%}
     <div class="form-btn-group pull-right">
         <button type="submit" class="btn btn-primary">
             Enregistrement

@@ -2,14 +2,14 @@
 
 {% block content %}
     <img src="{{asset('upload/logojeurond.png')}}" alt="logo" class="logoform"/>
-    <h1>Jeux Esport</h1>
+    <h1 class="text-center">Jeux Esport</h1>
     <div class="row">
     {% for jeu in jeux %}
         <div class="col-md-4 cadre">
         {% set nbTournois = 0 %}
         {% if jeu.cover is defined %}
             
-            <div class="col-xs-6 col-md-3">
+            <div class="">
                 <div class="thumbnail">
                     <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}" class="vignettejeux">
                         <div style="background:url('{{ jeu.cover.url }}') no-repeat center; background-size: cover" alt="..."></div>
@@ -29,7 +29,6 @@
             </div>
         {% endif %}
 
-        <h2>{{ jeu.name }}</h2>
         </div>
     {% endfor %}
     </div>
