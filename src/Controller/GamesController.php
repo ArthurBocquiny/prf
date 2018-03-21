@@ -22,14 +22,15 @@ class GamesController extends Controller
 
         
         $repository = $this->getDoctrine()->getRepository(Tournois::class);
-        
+        $tournois = $repository->findAll();
         $games = $repository->tournoisJeuName();
+                    
         
         for($i = 0; $i < count($games); $i++)
         {
             $gamesNames[] = $games[$i]['jeu'];
         }
-        dump($gamesNames);
+        
         for($i = 0; $i < count($gamesNames); $i++)
         {
             $j = 0;
@@ -39,11 +40,11 @@ class GamesController extends Controller
             $k = 0;
             while($k < count($infos))
             {
-            if ( isset($infos[$k]->cover) )
-            { 
-                $infos[$k]->cover->url = str_replace('t_thumb', 't_cover_big', $infos[$k]->cover->url);
-            }
-            $k++;
+                if ( isset($infos[$k]->cover) )
+                { 
+                    $infos[$k]->cover->url = str_replace('t_thumb', 't_cover_big', $infos[$k]->cover->url);
+                }
+                $k++;
         }
             
             foreach($infos as $key => $value)
@@ -60,11 +61,17 @@ class GamesController extends Controller
         }
         dump($jeux);
         
+        
+        $nbtournois = $repository->countTournois();
+        dump($nbtournois);
+        
 
         return $this->render(
                 'games/index.html.twig',
                 [
                     'jeux' => $jeux,
+                    'nbtournois' => $nbtournois,
+                    'tournois' => $tournois
                 ]
         );
     }
@@ -76,7 +83,7 @@ class GamesController extends Controller
     {
         $em = $this->getDoctrine()->getRepository(Tournois::class);
         $selectedtournois = $em->findBy(['jeu' => $jeu]);
-        dump($selectedtournois);
+        
         return $this->render(
                 'games/fichejeu.html.twig',
                 [

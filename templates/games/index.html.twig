@@ -4,16 +4,27 @@
     <h1>Jeux Esport</h1>
     <div class="row">
     {% for jeu in jeux %}
+        {% set nbTournois = 0 %}
         {% if jeu.cover is defined %}
             
-                <div class="col-xs-6 col-md-3">
-                    <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}" class="thumbnail">
-                        <img src="{{ jeu.cover.url }}" alt="..." style="width: 250px">
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail">
+                    <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}" class="vignettejeux">
+                        <div style="background:url('{{ jeu.cover.url }}') no-repeat center; background-size: cover" alt="..."></div>
                     </a>
-        
+                <div class="caption">
                     <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}"><h2 class="text-center">{{ jeu.name }}</h2></a>
+                    <p>{{ jeu.summary|slice(0, 200) }} ...</p>
+                    <a href="{{ path("app_games_fichejeu", {jeu: jeu.name} ) }}" class="btn btn-primary" role="button">                
+                    {% for tournoi in tournois %}
+                        {% if jeu.name == tournoi.jeu %}
+                            {% set nbTournois = nbTournois + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ nbTournois }} Tournois à venir</a>
                 </div>
-            
+            </div>
+            </div>
         {% endif %}
     {% endfor %}
     </div>
