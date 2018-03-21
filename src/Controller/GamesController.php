@@ -59,11 +59,9 @@ class GamesController extends Controller
                 
             $infos = '';    
         }
-        dump($jeux);
         
         
         $nbtournois = $repository->countTournois();
-        dump($nbtournois);
         
 
         return $this->render(
