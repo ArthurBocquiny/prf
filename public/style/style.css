@@ -74,12 +74,13 @@ background: #FFD100;
     padding-top: 25px;
     margin-bottom: 40px;
     border:1px solid black;
+    min-height:700px;
 }
 
 .logoform
 {
     height:150px;
-    margin:0 41%;
+    margin:0 43%;
 }
 
 #form 
@@ -129,6 +130,15 @@ background: #FFD100;
     margin:0 auto;
     border:1px dotted black;
     padding:1%;
+}
+
+.cadre2 
+{
+    margin:0 auto;
+    border:1px dotted black;
+    padding:1%;
+    margin-bottom:1%;
+    min-height:600px;
 }
 
 .nav, .navbar
