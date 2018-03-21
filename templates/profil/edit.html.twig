@@ -4,12 +4,8 @@
     <h1>Ajout de clan</h1>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
-    {{ form_row(form.id_user, {'value': app.user.id}) }}
     {{ form_row(form.description) }}
-    {{ form_row(form.creation) }}
-    {#{ form_row(form.teams) }#}
     {{ form_row(form.logo) }}
-    {# form.vars.value = l'entité liée au formulaire(l'entité Article) #}
     {% if form.vars.value.logo is not null %}
         <p>
             Actuellement : 

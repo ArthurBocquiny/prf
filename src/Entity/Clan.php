@@ -18,6 +18,12 @@ class Clan
     private $id;
 
     /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $id_user;
+    
+    /**
      * @ORM\Column()
      * @Assert\NotBlank()
      * @var string 
@@ -38,16 +44,14 @@ class Clan
     
     /**
      * @ORM\Column(nullable=true)
-     * @var string
-     */
-    private $teams;
-    
-    /**
-     * @ORM\Column(nullable=true)
      * @Assert\Image()
      * @var string
      */
     private $logo;
+    
+    function __construct() {
+        $this->creation = new \DateTime('now');
+    }
     
     function getId() {
         return $this->id;
@@ -65,9 +69,6 @@ class Clan
         return $this->creation;
     }
 
-    public function getTeams() {
-        return $this->teams;
-    }
 
     public function getLogo(){
         return $this->logo;
@@ -88,16 +89,20 @@ class Clan
         return $this;
     }
 
-    public function setTeams($teams) {
-        $this->teams = $teams;
-        return $this;
-    }
-
     public function setLogo($logo) {
         $this->logo = $logo;
         return $this;
     }
 
+
+    function getIdUser() {
+        return $this->id_user;
+    }
+
+    function setIdUser($id_user) {
+        $this->id_user = $id_user;
+        return $this;
+    }
 
 
 }

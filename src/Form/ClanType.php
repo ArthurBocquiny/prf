@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +18,7 @@ class ClanType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+                           
             ->add('name',
             TextType::class,
             [
@@ -27,19 +29,7 @@ class ClanType extends AbstractType
             [
                 'label' => 'Description'
             ])
-            /*->add('teams',
-            ChoiceType::class,
-            [
-                'label'=> 'Teams du clan',
-                //'class'=> Team::class,
-                'choice_label'=>'name',
-                'placeholder'=>'choisissez une team'
-            ])*/    
-            ->add('creation',
-            DateType::class,
-            [
-                'label'=> 'Date de création'
-            ])
+           
             ->add('logo',
             FileType::class,
             [

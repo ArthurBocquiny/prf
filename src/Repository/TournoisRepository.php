@@ -38,11 +38,28 @@ class TournoisRepository extends ServiceEntityRepository
     {
         $connect = $this->getEntityManager()->getConnection();
         
-        $sql =  "SELECT t.jeu, t.date, i.id
+        $sql =  "SELECT t.categorie, t.jeu, t.date, i.id
                 FROM tournois t
                 JOIN inscription_tournois i
                 WHERE i.id_tournois = t.id
                 AND i.id_user =".$iduser;
+        
+        $result = $connect->query($sql);
+            
+            return $result->fetchAll();
+        ;
+    }
+    
+    public function tournoisClan($idclan)
+    {
+        $connect = $this->getEntityManager()->getConnection();
+        
+        $sql =  "SELECT t.jeu, t.date, i.id
+                FROM tournois t
+                JOIN inscription_tournois i
+                WHERE i.id_tournois = t.id
+                AND t.categorie = 'Clan'
+                AND i.id_clan =".$idclan;
         
         $result = $connect->query($sql);
             

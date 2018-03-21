@@ -5,6 +5,8 @@
     {% for jeu in jeux %}
         {% if jeu.cover is defined %}
                 <img src="{{ jeu.cover.url }}">
+        {% else %}
+                <img src="{{ asset('upload/error.gif') }}">
         {% endif %}
         <h2>{{ jeu.name }}</h2>
     {% endfor %}

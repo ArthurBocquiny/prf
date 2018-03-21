@@ -10,12 +10,62 @@
         <h2>Tournois à venir auxquels vous êtes inscrit</h2>
         
     {% for tournoisuser in tournoisusers %}
-        {{ tournoisuser.jeu }}
-        {{ tournoisuser.date|date('d/m/Y à h:i') }}
-            <a href="{{ path('app_profil_delete', {id: tournoisuser.id}) }}" class="btn btn-danger">
-                        Se désinscrire
-            </a> 
-        <br>
+        {% if tournoisuser.categorie != 'Clan' %}
+            {{ tournoisuser.jeu }}
+            {{ tournoisuser.date|date('d/m/Y à h:i') }}
+                <a href="{{ path('app_profil_delete', {id: tournoisuser.id}) }}" class="btn btn-danger">
+                            Se désinscrire
+                </a> 
+            <br>
+        {% endif %}
     {% endfor %}
+        
+    <h2>Invitation(s) à un clan :</h2>
+    {% if nbInvit > 0 %}
+        <p>Vous avez {{ nbInvit }} invitation(s)</p>
+        {% for inClan in invClan %}
+            <p>Invitation à rejoindre : {{ inClan[0].name }}</p>
+            <a href="?action=accept&id_clan={{ inClan[0].id }}">Accepter</a>
+            <a href="?action=refus&id_clan={{ inClan[0].id }}">Refuser</a>
+        {% endfor %}
+    {% endif %}
+    
+    
+        <h2>Clan</h2>
+        {% if idUserClan == 0 %}
+            <h3>Vous n'avez pas de clan, voulez-vous <a href="{{ path('app_profil_edit') }}">créer un clan </a> ?</h3>
+        {% else %}
+            
+            <h3>Vous êtes déjà dans un clan : {{ clanUser[0].name }}</h3>
+            <a href="?action=leave">Quitter Le Clan</a>
+            
+            <h3>Tournois du clan :</h3>
+            {% for tournoiscla in tournoisclan %}
+                
+                    {{ tournoiscla.jeu }}
+                    {{ tournoiscla.date|date('d/m/Y à h:i') }}
+                        <a href="{{ path('app_profil_delete', {id: tournoiscla.id}) }}" class="btn btn-danger">
+                                    Se désinscrire
+                        </a> 
+                    <br>
+            {% endfor %}
+            
+            <h3>Ajouter un membre :</h3>
+            <form action="" method="GET">
+                <label for="user">Utilisateur :</label>
+                <input type="text" name="user">
+
+                <input type="submit" value="rechercher">
+            </form>
+            {% if searchUsers is defined %}
+                {% for searchUser in searchUsers %}
+                    <p>{{ searchUser.pseudo }}</p>
+                    <a href="?action=ajout&user={{ searchUser.id }}">Ajouter {{ searchUser.pseudo }}</a>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    
+        
+    
     
 {% endblock %}

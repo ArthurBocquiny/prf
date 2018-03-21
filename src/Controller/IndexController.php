@@ -21,7 +21,6 @@ class IndexController extends Controller
     {
         $prochainsTournois = $this->getDoctrine()->getRepository(Tournois::class);
         $tournois = $prochainsTournois->findNextTournois(5);
-        
         $newNews = $this->getDoctrine()->getRepository(News::class);
         $news = $newNews->findNewNews(5);
         
@@ -76,8 +75,11 @@ class IndexController extends Controller
         $form = $this->createForm(InscriptionTournoisType::class, $tournois);
         
         
+        $idClan = $this->getUser()->getIdClan();
+        
         $repository = $this->getDoctrine()->getRepository(InscriptionTournois::class);
         $insctournois = count($repository->grossePute($id, $actuser));
+        $insctournoisclan = count($repository->grossePuteB($id, $idClan));
 
        
         if ($actuser !== null){
@@ -113,7 +115,8 @@ class IndexController extends Controller
                 'selectedtournois' => $selectedtournois,
                 'form' => $form->createView(),
                 'nbuser' => $nbuser,
-                'insctournois' => $insctournois
+                'insctournois' => $insctournois,
+                'insctournoisclan' => $insctournoisclan
             ]);
     }
 }

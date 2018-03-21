@@ -30,6 +30,7 @@ class TournoisType extends AbstractType
                 'choices' => array(
                 'Speed run' => 'speedrun',
                 'FPS' => 'FPS',
+                'Clan' => 'Clan',
                 )
             ),
                     [
