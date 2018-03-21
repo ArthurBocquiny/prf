@@ -1,6 +1,8 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <img src="{{asset('upload/dragonlogorond.png')}}" alt="logo" class="logoform"/>
+
     <h1>Modifier un membre</h1>
     {{ form_start(form) }}
     {{ form_row(form.firstname) }}

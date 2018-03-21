@@ -1,8 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <img src="{{asset('upload/logotournoirond.png')}}" alt="logo" class="logoform"/>
 
-    <h1>Organiser un tournois pour : {{ app.request.query.get("game_name") }}</h1>
+    <h1 class="text-center">Organiser un tournoi pour : {{ app.request.query.get("game_name") }}</h1>
     
     {{ form_start(form) }}
         {{ form_row(form.jeu) }}
