@@ -11,6 +11,13 @@
     {{ form_row(form.birthdate) }}
     {{ form_row(form.email) }}
     {{ form_row(form.plainPassword) }}
+    {% if form.vars.value.photo is not null %}
+        <p>
+            Actuellement : 
+            <img src="{{ asset('upload/' ~ form.vars.value.photo) }}" width="200px">
+        </p>
+        {{ form_row(form.remove_photo) }}
+    {% endif%}
     <div class="form-btn-group pull-right">
         <button type="submit" class="btn btn-primary">
             Enregistrement
