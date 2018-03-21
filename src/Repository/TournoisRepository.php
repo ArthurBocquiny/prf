@@ -49,6 +49,21 @@ class TournoisRepository extends ServiceEntityRepository
             return $result->fetchAll();
         ;
     }
+    
+    public function countTournois()
+    {
+        $connect = $this->getEntityManager()->getConnection();
+        
+        $sql =  "SELECT COUNT(jeu)
+                FROM tournois
+                GROUP BY jeu";
+        
+        $result = $connect->query($sql);
+            
+            return $result->fetchAll();
+        ;
+    }
+    
     public function tournoisJeuName()
     {
         $connect = $this->getEntityManager()->getConnection();
