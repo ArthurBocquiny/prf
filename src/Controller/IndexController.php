@@ -89,7 +89,6 @@ class IndexController extends Controller
                 $nomselectedtournois = $selectedtournois->getJeu();
                 $nomactuser = $this->getUser()->getPseudo();
             }
-        
         }
         
 
