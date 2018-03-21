@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css?family=Aldrich|Cabin|Carrois+Gothic+SC|Comfortaa|Expletus+Sans|IBM+Plex+Mono|Iceberg|Iceland|Jura|Kelly+Slab|Nova+Mono|Nova+Square|Rajdhani|Reem+Kufi|Righteous|Russo+One|Saira+Extra+Condensed|Text+Me+One');
+
+body 
+{
+    font-family: 'Rajdhani', sans-serif;
+    font-weight:bold;
+}
+
+
+h1, h2, h3
+{
+    font-family: 'Russo One', sans-serif;
+}
+
+.bouton
+{
+    transition:.3s;
+    color:black;
+}
+.bouton:hover
+{
+    background:#123667;
+}
+
+#bouton
+
+.conteneur
+{
+    background:rgba(255, 255, 255, 0.9);
+    margin-top:40px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+}
+
+body 
+{
+    background:url('../upload/fonddef5.png');
+}
+
+.imgbanner
+{
+    height:100%;
+    margin-left:10%;
+}
+
+.banner
+{
+    height:100px;
+    
+
+background: #FFD100;
+
+}
+.navbar-brand
+{
+    background:url("../upload/logocouleurs2.png");
+}
+.banner img{
+    height:100%;
+}
+
+.conteneur
+{   
+    background:rgba(255, 255, 255, 0.9);
+    margin-top:40px;
+    border-radius:10px;
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+}
+
+.logoform
+{
+    height:150px;
+    margin:0 41%;
+}
+
+#form 
+{   background: rgba(226,226,226,1);
+    background: -moz-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(50%, rgba(219,219,219,1)), color-stop(51%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
+    background: -webkit-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+    background: linear-gradient(135deg, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
+    border:3px solid rgb(240, 240, 240);
+    margin-top:20px;
+    margin-bottom:20px;
+    padding:50px 20px;
+    -webkit-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.75);
+    width:90%;
+    margin:0 auto;
+
+}
+
+#user_firstname, #user_lastname, #user_pseudo, #user_plainPassword_first, #user_plainPassword_second, #user_email, #user_edit_firstname, #user_edit_lastname, #user_edit_pseudo, #user_edit_email, #user_edit_plainPassword_first, #user_edit_plainPassword_second, #contact_name, #contact_email, #contact_message, #contact_object
+{
+   
+    background:transparent;
+    outline:none;
+    border:none;
+    border-bottom:1px dotted rgb(23, 21, 51);
+    box-shadow: 0px;
+<<<<<<< HEAD
+}  
+
+#form input
+{
+    background:transparent;
+    outline:none;
+    border:none;
+    border-bottom:1px dotted rgb(23, 21, 51);
+    box-shadow: 0px;
+}
+
+.cadre 
+{
+    margin:0 auto;
+    border:1px dotted black;
+    padding:1%;
+}
+
+.nav, .navbar
+{
+    color:black;
+    background:#FFD100;
+    border-radius:0;
+    border:none;
+    
+}
+.nav li a, .navbar li a
+{
+    color:black;
+}
+
+a
+{
+    color: #000;
+}
+
+
+footer 
+{
+    height:60px;
+    background:#FFD100;
+}
+
+footer img
+{
+    height:60px;
+}
+
+footer span
+{
+    line-height:60px;
+    text-align:center;
+}
+
+=======
+}
+
+/*---------PAGE JEUX----------*/
+
+.vignettejeux div {
+    width : 100% ;
+    height: 300px ;
+}
+>>>>>>> Grugrumf

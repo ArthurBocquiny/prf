@@ -47,7 +47,7 @@ class UsersController extends Controller
         $em->persist($users);
         $em->flush();
         
-        $this->addFlash('success', 'Le membre a été promou');
+        $this->addFlash('success', 'Le membre a été promu');
         return $this->redirectToRoute('app_admin_users_index');
         
     }

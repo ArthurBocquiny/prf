@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}    
+    
+        <h1>{{ selectedtournois[0].jeu }}</h1>
+    {% for selectedtournoi in selectedtournois %}
+        <h2><a href="{{ path('app_index_fichetournois', {id: selectedtournoi.id}) }}">Le {{ selectedtournoi.date|date('d/m/Y à h:i') }}</a></h2>
+        <p>{{ selectedtournoi.categorie }}</p>
+        <p>{{ selectedtournoi.description }}</p>
+    {% endfor %}
+    
+{% endblock %}

@@ -22,12 +22,13 @@ class GamesController extends Controller
 
         
         $repository = $this->getDoctrine()->getRepository(Tournois::class);
-        
-        $games = $repository->findAll();
+        $tournois = $repository->findAll();
+        $games = $repository->tournoisJeuName();
+                    
         
         for($i = 0; $i < count($games); $i++)
-        {    
-            $gamesNames[] = $games[$i]->getJeu();
+        {
+            $gamesNames[] = $games[$i]['jeu'];
         }
         
         for($i = 0; $i < count($gamesNames); $i++)
@@ -35,25 +36,58 @@ class GamesController extends Controller
             $j = 0;
             $response = $browser->get('https://api-endpoint.igdb.com/games/?fields=*&search='.$gamesNames[$i], ['user-key' => '1da94eeed8524c769b940cd570045f1f']);
             $infos = json_decode($response->getContent());
+            
+            $k = 0;
+            while($k < count($infos))
+            {
+                if ( isset($infos[$k]->cover) )
+                { 
+                    $infos[$k]->cover->url = str_replace('t_thumb', 't_cover_big', $infos[$k]->cover->url);
+                }
+                $k++;
+        }
+            
             foreach($infos as $key => $value)
             {
                 if ( $infos[$j]->name == $gamesNames[$i])
                 {
                     $jeux[] = $infos[$j];
+                    
                 }
                 $j++;
             }
                 
             $infos = '';    
         }
+        dump($jeux);
         
+        
+        $nbtournois = $repository->countTournois();
+        dump($nbtournois);
         
 
         return $this->render(
                 'games/index.html.twig',
                 [
                     'jeux' => $jeux,
+                    'nbtournois' => $nbtournois,
+                    'tournois' => $tournois
                 ]
         );
+    }
+    
+    /**
+     * @Route("/fichejeu/{jeu}", defaults={"jeu" :null})
+     */
+    public function fichejeu($jeu)
+    {
+        $em = $this->getDoctrine()->getRepository(Tournois::class);
+        $selectedtournois = $em->findBy(['jeu' => $jeu]);
+        
+        return $this->render(
+                'games/fichejeu.html.twig',
+                [
+                    'selectedtournois' => $selectedtournois
+                ]);
     }
 }

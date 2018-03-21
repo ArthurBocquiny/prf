@@ -1,8 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Inscription</h1>
-    {{ form_start(form) }}
+    <h1 class="text-center">Inscription</h1>
+    {{ form_start(form, {attr : {id : 'form' }}) }}
+    <img src="{{asset('upload/logoinscriptionrond.png')}}" alt="logo" class="logoform"/>
     {{ form_row(form.firstname) }}
     {{ form_row(form.lastname) }}
     {{ form_row(form.pseudo) }}

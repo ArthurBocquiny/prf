@@ -1,24 +1,26 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Ajout de clan</h1>
-    {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.logo) }}
-    {% if form.vars.value.logo is not null %}
-        <p>
-            Actuellement : 
-            <img src="{{ asset('upload/' ~ form.vars.value.logo.filename) }}" width="200px">
-        </p>
-    {% endif%}
+
+    <h1>Modification de votre profil</h1>
+    {{ form_start(form, {attr : {id : 'form' }}) }}
+    <img src="{{asset('upload/epeelogorond.png')}}" alt="logo" class="logoform"/>
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.pseudo) }}
+    {{ form_row(form.country) }}
+    {{ form_row(form.birthdate) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
     <div class="form-btn-group pull-right">
         <button type="submit" class="btn btn-primary">
-            Ajouter
+            Enregistrement
         </button>
-        <a href="{{ path('app_admin_clan_index') }}" class="btn btn-default">
+        <a href="{{ path('app_profil_index') }}" class="btn btn-default">
             Retour
         </a>
     </div>
     {{ form_end(form) }}
+
 {% endblock %}
+
