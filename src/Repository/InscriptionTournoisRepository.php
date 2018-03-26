@@ -36,7 +36,7 @@ class InscriptionTournoisRepository extends ServiceEntityRepository
    
     }
      
-    public function grossePute($id, $actuser)
+    public function userInscription($id, $actuser)
     {
         $qb = $this->createQueryBuilder('i');
         
@@ -49,7 +49,7 @@ class InscriptionTournoisRepository extends ServiceEntityRepository
             return $qb->getQuery()->getResult();
     }
      
-    public function grossePuteB($id, $idClan)
+    public function userClanInscription($id, $idClan)
     {
         $qb = $this->createQueryBuilder('i');
         

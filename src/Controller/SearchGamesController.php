@@ -25,9 +25,9 @@ class SearchGamesController extends Controller
             $search = $_GET['games'];
         }
         
-        $response = $browser->get('https://api-endpoint.igdb.com/games/?fields=*&search=' . $search, ['user-key' => '1da94eeed8524c769b940cd570045f1f']);
+        $response = $browser->get('https://api-endpoint.igdb.com/games/?fields=*&search=' . $search, ['user-key' => '8b08955bdd93969a13b998edea92d869']);
         $infos = json_decode($response->getContent());
-        
+        dump($infos);
         $i = 0;
         while($i < count($infos))
         {

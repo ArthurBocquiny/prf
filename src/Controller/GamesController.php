@@ -24,17 +24,17 @@ class GamesController extends Controller
         $repository = $this->getDoctrine()->getRepository(Tournois::class);
         $tournois = $repository->findAll();
         $games = $repository->tournoisJeuName();
-                    
+               
         
         for($i = 0; $i < count($games); $i++)
         {
             $gamesNames[] = $games[$i]['jeu'];
         }
-        
         for($i = 0; $i < count($gamesNames); $i++)
         {
             $j = 0;
-            $response = $browser->get('https://api-endpoint.igdb.com/games/?fields=*&search='.$gamesNames[$i], ['user-key' => '1da94eeed8524c769b940cd570045f1f']);
+            $response = $browser->get('https://api-endpoint.igdb.com/games/?fields=*&search='.$gamesNames[$i], ['user-key' => '8b08955bdd93969a13b998edea92d869']);
+
             $infos = json_decode($response->getContent());
             
             $k = 0;
@@ -45,8 +45,7 @@ class GamesController extends Controller
                     $infos[$k]->cover->url = str_replace('t_thumb', 't_cover_big', $infos[$k]->cover->url);
                 }
                 $k++;
-        }
-            
+            }
             foreach($infos as $key => $value)
             {
                 if ( $infos[$j]->name == $gamesNames[$i])
@@ -56,7 +55,6 @@ class GamesController extends Controller
                 }
                 $j++;
             }
-                
             $infos = '';    
         }
         

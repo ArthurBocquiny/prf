@@ -47,11 +47,11 @@ class ProfilController extends Controller
         $repo = $this->getDoctrine()->getRepository(Tournois::class);
         
         $tournoisusers = $repo->tournoisUser($iduser);
-
+ 
         $idclan = $user->getIdClan();
-        
+
         $tournoisclan = $repo->tournoisClan($idclan);
-        
+
         $repositoryClan = $this->getDoctrine()->getRepository(Clan::class);
         
         $idUserClan = $this->getUser()->getIdClan();

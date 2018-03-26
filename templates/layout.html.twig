@@ -39,7 +39,7 @@
             <li class="bouton"><a>MENU ADMIN</a></li>
             <li class="bouton" id="bouton"><a href="{{ path('app_admin_news_index') }}">News</a></li>
             <li class="bouton" id="bouton"><a href="{{ path('app_admin_users_index') }}">Users</a></li>
-            <li class="bouton" id="bouton"><a href="{{ path('app_admin_clan_index') }}">Clan</a></li>
+            <!-- <li class="bouton" id="bouton"><a href="{#{{ path('app_admin_clan_index') }}#}">Clan</a></li> -->
             <li class="bouton" id="bouton"><a href="{{ path('app_admin_tournois_index') }}">Tournois</a></li>
         {% endif %}
         
@@ -48,7 +48,7 @@
         <ul class="nav navbar-nav navbar-right">
                 {% if app.user is null %}
                     <li class="bouton rouge" id="bouton">
-                        <a id="bouton" href="{{ path('app_security_register') }}">
+                        <a href="{{ path('app_security_register') }}">
                             Inscription
                         </a>
                     </li>

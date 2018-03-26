@@ -86,10 +86,10 @@ class TournoisRepository extends ServiceEntityRepository
                 JOIN inscription_tournois i
                 WHERE i.id_tournois = t.id
                 AND t.categorie = 'Clan'
-                AND i.id_clan =".$idclan;
+                AND i.id_clan = '".$idclan."'";
         
         $result = $connect->query($sql);
-            
+
             return $result->fetchAll();
         ;
     }

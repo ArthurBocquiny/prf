@@ -81,8 +81,10 @@ class IndexController extends Controller
         {
             $actuser = $this->getUser();
             $idClan = $this->getUser()->getIdClan();
-            $insctournois = count($repository->grossePute($id, $actuser));
-            $insctournoisclan = count($repository->grossePuteB($id, $idClan));
+            $insctournois = count($repository->userInscription($id, $actuser));
+            $insctournoisclan = count($repository->userClanInscription($id, $idClan));
+           
+                
             if ($actuser !== null)
             {
                 $emailuser = $this->getUser()->getEmail();
